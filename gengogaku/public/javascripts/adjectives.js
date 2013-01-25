@@ -38,12 +38,3 @@ function update() {
 	document.getElementById("aAdvTF").value = adj.aAdv;
 	document.getElementById("aTooTF").value = adj.aToo;
 }//update
-
-function qp(string) {
-	if (debug) {
-		string = document.adjBuilder.infotext.value + "\n" + string;
-		document.adjBuilder.infotext.value = string;
-	}//if 
-}//qp
-
-var debug = false;

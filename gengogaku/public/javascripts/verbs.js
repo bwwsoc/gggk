@@ -708,15 +708,6 @@
 	
 	}//fullOutput
 
-	function qp(string) {
-
-		if (debug) {
-			console.log(string);
-
-		}//if 
-
-	}
-
 function clearOutputs() {
 		vPPres = "";
 
@@ -774,6 +765,7 @@ function clearOutputs() {
 
 }
 
+//remove
 function openWin(theURL,winName,features) { 
   window.open(theURL,winName,features);
 }
