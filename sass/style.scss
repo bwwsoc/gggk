@@ -1,0 +1,331 @@
+@import "g_mixins";
+
+/* Main - site wide styles: nav, header, footer, etc */
+
+a {
+  color: #297897;
+}
+
+
+
+body {
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+	float: left;
+	margin: 0;
+	padding: 5px 0;
+}
+
+.active {
+	color: black;
+}
+
+.brand {
+	color: #bbb;
+	font-size: 18px;
+	text-decoration: none;
+}
+
+.main-header {
+	background-color: white;
+	border-bottom: 1px solid #333;
+	font-family: 'Walter Turncoat';
+	margin:0;
+	overflow: hidden;
+	padding: 5px;
+}
+
+.nav-link {
+	background-color: white;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ddd;
+	display: block;
+	float: left;
+	font-size: 15px;
+	margin: 8px 7px 0 0;
+	text-align: center;
+	width: 90px;
+    $shadow: 0 0 0 rgba(0,0,0,1);
+    @include box-shadow($shadow);
+	@include border-top-right-radius(0);
+	@include border-bottom-right-radius(20px);
+	@include border-bottom-left-radius(0);
+}
+
+.nav-link a {
+	color: #444;
+	text-decoration: none;
+}
+
+section {
+	display: block;
+}
+
+/* General styles */
+
+
+
+.btn {
+	background-color: white;
+	border: 1px solid #999;
+	margin: 3px 0;
+    $shadow: 1px 0 0 rgba(0,0,0,.5);
+    @include box-shadow($shadow);
+	@include border-radius(5px);
+	
+}
+
+.buildBtn {
+	height: 25px;
+	width: 60px;
+}
+
+.data-callout {
+	background-color: #e0eff3;
+	
+}
+
+.featureSubcontainer {
+	margin: 10px 0;
+}
+
+.gggk-table {
+	border-collapse: collapse;	
+	min-width: 425px;
+}
+
+.gggk-table td{
+	border: 1px solid #ddd;
+	height: 15px;
+	padding: 3px 4px;	
+}
+
+
+.gggk-footer {
+	background-color: #eeeeee;
+	margin: 5px 50px;
+}
+
+.input-small {
+	width: 95px;
+}
+
+.mainContent {
+	clear: both;
+	margin: 0 auto;
+	min-height: 500px;
+	width: 85%;
+}
+
+.tryIt {
+	border: 1px solid #333;
+	clear: both;
+	margin: 10px 0;
+	overflow: hidden;
+	padding: 5px;
+	width: 285px;
+}
+
+.tryIt-label {
+	//width: 80px;
+}
+
+.tryIt-examples {
+	margin: 5px 0;
+}
+
+.tryIt-example {
+	float: left;
+	min-height: 33px;
+	text-align: center;
+	width: 70px;
+}
+.tryIt-example-dt {
+	float: left;
+	margin: 0 5%;
+	min-height: 33px;
+	text-align: center;
+	width: 110px;
+}
+
+.tryIt-example-label {
+	display: block;
+	width: 100%;
+}
+.tryIt div {
+  //border: 1px solid green;
+
+}
+
+/* Index page */
+
+.menuList {
+	margin: 5px 40px;
+}
+
+.builder {
+	border: 1px solid #dddddd;
+}
+
+.builder td {
+	border-right: 1px solid #ddd;
+
+}
+
+/* Verb builder */
+
+.verbCol {
+	width: 160px;
+}
+
+.sampleBtn {
+	background-color: white;
+	border-bottom: 1px solid #eee;
+	border-right: 1px solid #eee;
+	margin: 5px auto;
+	text-align: center;
+	width: 100px;
+    $shadow: 1px 0 0 rgba(0,0,0,.5);
+    @include box-shadow($shadow);
+	@include border-top-right-radius(0);
+	@include border-bottom-right-radius(20px);
+	@include border-bottom-left-radius(0);
+}
+
+.ambigVerb {
+	display: none;
+}
+
+
+/* Date and Time */
+
+.dateTimeContainer {
+	width: 95%;
+}
+
+.dtConverter {
+	margin: 10px 0;
+}
+
+.dt {
+	background-color: #efefef;
+	border-collapse: collapse;
+}
+
+.dt td {
+	border: 1px solid #ddd;
+	padding: 5px;
+}
+
+.dtFields {
+	width: 320px;
+}
+
+.dtHeading {
+	text-align: center;
+}
+
+.dtRow {
+	clear: left;
+	border: 1px solid #dddddd;
+}
+.dtRow div {
+}
+
+.dtLabel {
+font-weight: bold;
+}
+
+.dtValueCol {
+	padding: 5px;
+	float: left;
+}
+
+
+/* Kana converter */
+
+.conversionDisplay {
+	border: 1px solid #eee;
+	margin: 10px 0px 0px 0px;
+	width: 160px;
+}
+
+.conversionDisplay div {
+	width: 160px;
+}
+
+.conversionDisplay span {
+	font-size: 12px;
+	padding: 4px 5px;
+	text-align: left;
+}
+
+.kExample {
+	font-size: 16px;
+}
+
+.outputLabel {
+	display: inline-block;
+	width: 85px;
+}
+
+.scriptDisplay {
+	color: #13745a;
+	font-size: 48px;
+	text-shadow: 3px 3px 3px #98b2f5;
+}
+.stacked-labels {
+	display: none;
+}
+
+@media screen and (max-width: 360px)  {
+	.brand {
+		display: none;
+	}
+	.dtFields {
+		width: 290px;
+	}
+	.gggk-table {
+		min-width: 305px;
+	}
+	
+	.mainContent {
+		clear: both;
+		margin: 0 auto;
+		width: 98%;
+	}
+	
+	.nav {
+		font-size: 13px;
+	}
+
+	.builder-labels {
+		display: none;
+	}
+	.stacked-labels {
+		display: block;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

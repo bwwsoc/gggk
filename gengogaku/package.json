@@ -1,0 +1,9 @@
+{
+  "name": "gengogaku",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "",
+    "ejs": "",
+    "ejs-locals": "~1.0.2"
+  }
+}

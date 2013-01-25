@@ -1,0 +1,247 @@
+<% layout('layout') -%>
+<% script('javascripts/verbs.js') -%>
+<% script('javascripts/verbs-h.js') -%>
+
+	<section class="mainContent">
+	    <div class="featureHeading">
+          <p class="featureTitle">Verb builder</p>
+		  <p class="featureDescription">This  will build the various verb forms once supplied with the dictionary form. Try taberu, miru, oyogu, etc. For ambiguous verbs like 'kiru - to wear' and 'kiru - to cut', it will prompt you for the verb you want. It will accept both romaji (taberu) and hiragana (たべる).</p>
+	    </div>
+    	<div class="featureSubcontainer">
+    	<div class="tryIt">
+    		<span class="tryIt-label">Try it!</span>
+    		<div class="tryIt-examples">
+    			<div class="tryIt-example">
+    				<span class="tryIt-example-label">To eat</span>
+    				<button class="btn" onclick="tryVerbs(this)">taberu</button>
+    				<button class="btn" onclick="tryVerbs(this)">たべる</button>
+    			</div>
+    			<div class="tryIt-example">
+    				<span class="tryIt-example-label">To swim</span>
+    				<button class="btn" onclick="tryVerbs(this)">oyogu</button>
+    				<button class="btn" onclick="tryVerbs(this)">およぐ</button>
+    			</div>
+    			<div class="tryIt-example">
+    				<span class="tryIt-example-label">To see</span>
+    				<button class="btn" onclick="tryVerbs(this)">miru</button>
+    				<button class="btn" onclick="tryVerbs(this)">みる</button>
+    			</div>
+    			<div class="tryIt-example">
+    				<span class="tryIt-example-label">To drink</span>
+    				<button class="btn" onclick="tryVerbs(this)">nomu</button>
+    				<button class="btn" onclick="tryVerbs(this)">のむ</button>
+    			</div>
+    		</div>
+    	</div>
+	        <table class="gggk-table">
+	          <tr> 
+	            <td class="builder-labels">&nbsp;</td>
+	            <td><span>Dictionary Form:</span>
+	             <input id="dfinTF" type="text" value="" name="dfinTF" class="input-small"> 
+	             </td>
+	            <td> <button class="buildBtn btn" onClick="doVerb()">Build</button> 
+	            </td>
+	          </tr>
+	          <tr class="ambigVerb"> 
+	            <td class="builder-labels">&nbsp;</td>
+	            <td colspan="2">For verbs with same spelling choose below</td>
+	          </tr>
+	          <tr id="ambigVerb1" class="ambigVerb"> 
+	            <td class="builder-labels">&nbsp;</td>
+	            <td colspan="2"> <button id="ichidanVTF" onClick="setWhich(2)"></button></td>
+	          </tr>
+	          <tr id="ambigVerb2" class="ambigVerb"> 
+	            <td class="builder-labels">&nbsp;</td>
+	            <td colspan="2"> <button id="yodanVTF" onClick="setWhich(3)"></button></td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">&nbsp;</td>
+	            <td>Affirmative</td>
+	            <td>Negative</td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Plain Present</td>
+	            <td id="plainPresent">  </td>
+	            <td id="negPlainPresent"></td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Plain Past</td>
+	            <td id="plainPast"></td>
+	            <td id="negPlainPast"></td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Polite Present</td>
+	            <td id="politePresent"> </td>
+	            <td id="negPolitePresent"> </td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Polite Past</td>
+	            <td id="politePast"></td>
+	            <td id="negPolitePast">  </td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Volitional (plain)</td>
+	            <td id="plainVol"> </td>
+	            <td id="negPlainVol"> n/a </td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Volitional (polite)</td>
+	            <td id="politeVol">  </td>
+	            <td id="negPoliteVol"> n/a</td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">TE-form/gerund</td>
+	            <td id="te"> </td>
+	            <td id="negTe">  </td>
+	          
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Passive (plain)</td>
+	            <td id="plainPass">  </td>
+	            <td id="negPlainPass"> </td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Imperative</td>
+	            <td id="imperative">  </td>
+	            <td> n/a </td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Desiderative</td>
+	            <td id="desiderative">  </td>
+	            <td id="negDesiderative">  </td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Causative</td>
+	            <td id="causative"> </td>
+	            <td id="negCausative">  </td>
+	            
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Conditional -eba</td>
+	            <td id="eba"></td>
+	            <td id="negEba">  </td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Conditional -ra</td>
+	            <td id="ra"> </td>
+	            <td id="negRa"> </td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Potential (plain)</td>
+	            <td id="potential">  </td>
+	            <td id="negPotential">  </td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Iterative</td>
+	            <td id="iterative"> </td>
+	            <td id="negIterative"> </td>
+	          </tr>
+	          <tr> 
+	            <td class="builder-labels">Simultaneous</td>
+	            <td id="simultaneous">   </td>
+	            <td id="negSimultaneous"> n/a   </td>
+	          </tr>
+	          <!--tr> 
+	            <td colspan="3"><a href="#" onClick="openWin('jsverblisting','','scrollbars=yes,resizable=yes,width=400,height=515')">View results in single text area for easy copy 
+	                    and paste.</a> <p><a name="moreinfo"></a></p></td>
+	          </tr-->	
+	        </table>
+    	</div>	
+    	<div class="featureSubcontainer">
+	        <table class="gggk-table data-callout">
+		        <caption> Examples </caption>
+
+	          <tr> 
+	            <td>&nbsp;</td>
+	            <td>&nbsp;</td>
+	            <td>Example: Affirmative translations for taberu - to eat.</td>
+	          </tr>
+	          <tr> 
+	            <td>Plain Present</td>
+	            <td id="plainPresent">taberu</td>
+	            <td>I eat. I will eat.</td>
+	          </tr>
+	          <tr> 
+	            <td>Plain Past</td>
+	            <td id="plainPast">tabeta</td>
+	            <td>I ate.</td>
+	          </tr>
+	          <tr> 
+	            <td>Polite Present</td>
+	            <td id="politePresent">tabemasu</td>
+	            <td>I eat. I will eat.</td>
+	          </tr>
+	          <tr> 
+	            <td>Polite Past</td>
+	            <td id="politePast">tabemashita</td>
+	            <td>I ate.</td>
+	          </tr>
+	          <tr> 
+	            <td>Volitional (plain)</td>
+	            <td id="plainVol">tabeyoo</td>
+	            <td>Let's eat.</td>
+	          </tr>
+	          <tr> 
+	            <td>Volitional (polite)</td>
+	            <td id="politeVol">tabemashoo</td>
+	            <td>Let's eat.</td>
+	          </tr>
+	          <tr> 
+	            <td>TE-form/gerund</td>
+	            <td id="te">tabete</td>
+	            <td>tabete imasu - I am eating.<br>
+	              tabete imashita - I was eating.<br>
+	              tabete kudasai - Please eat.</td>
+	          </tr>
+	          <tr> 
+	            <td>Passive (plain)</td>
+	            <td id="plainPass">taberareru</td>
+	            <td>I am eaten. (like by a lion, not good)</td>
+	          </tr>
+	          <tr> 
+	            <td>Imperative</td>
+	            <td id="imperative">tabero</td>
+	            <td>Eat. (command)</td>
+	          </tr>
+	          <tr> 
+	            <td>Desiderative</td>
+	            <td id="desiderative">tabetai</td>
+	            <td>I want to eat.</td>
+	          </tr>
+	          <tr> 
+	            <td>Causative</td>
+	            <td id="causative">tabesaseru</td>
+	            <td>(was) made to eat. The father made his son eat the tofu because 
+	              it was good for him.</td>
+	          </tr>
+	          <tr> 
+	            <td>Conditional -eba</td>
+	            <td id="eba">tabereba</td>
+	            <td>if I eat</td>
+	          </tr>
+	          <tr> 
+	            <td>Conditional -ra</td>
+	            <td id="ra">tabetara</td>
+	            <td>if I eat</td>
+	          </tr>
+	          <tr> 
+	            <td>Potential (plain)</td>
+	            <td id="potential">taberareru</td>
+	            <td>I can eat.</td>
+	          </tr>
+	          <tr> 
+	            <td>Iterative</td>
+	            <td id="iterative">tabetari</td>
+	            <td><p>They ate and ...<br>
+	                  (then were doing something else)</p>
+	            </td>
+	          </tr>
+	          <tr> 
+	            <td>Simultaneous</td>
+	            <td id="simultaneous">tabenagara</td>
+	            <td>While I am eating I am...<br>
+	                (doing something else at the same time)</td>
+	          </tr>
+	        </table>		    		        	    	
+        </div>
+    </section>

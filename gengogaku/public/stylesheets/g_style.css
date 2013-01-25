@@ -1,0 +1,155 @@
+/* Main - site wide styles: nav, header, footer, etc */
+a {
+  color: #297897; }
+
+body {
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0; }
+
+.nav {
+  float: left;
+  margin: 0;
+  padding: 5px 0; }
+
+.nav li {
+  display: inline;
+  margin: 2px 5px; }
+
+ul.nav li.active {
+  color: black; }
+
+.brand {
+  font-size: 20px; }
+
+.main-header {
+  border-bottom: 1px dashed #dddddd;
+  margin: 0 0 3px 0;
+  overflow: hidden;
+  padding: 5px 15px 10px 5px; }
+
+.navbar a {
+  color: #bbb;
+  text-decoration: none; }
+
+section {
+  display: block; }
+
+/* General styles */
+.mainContent {
+  clear: both;
+  margin: 0 auto;
+  min-height: 500px;
+  width: 85%; }
+
+.buildBtn {
+  height: 25px;
+  width: 60px; }
+
+.featureSubcontainer {
+  margin: 10px 0; }
+
+.gggk-table {
+  border-collapse: collapse; }
+
+.gggk-table td {
+  border: 1px solid #dddddd;
+  padding: 3px 4px; }
+
+.data-callout {
+  background-color: #efefef; }
+
+.gggk-footer {
+  background-color: #eeeeee;
+  margin: 5px 50px; }
+
+.siteInfo {
+  text-align: center; }
+
+.examples-adj {
+  width: 500px; }
+
+/* Index page */
+.menuList {
+  margin: 5px 40px; }
+
+.builder {
+  border: 1px solid #dddddd; }
+
+.builder td {
+  border-right: 1px solid #dddddd; }
+
+/* Verb builder */
+.verbCol {
+  width: 160px; }
+
+.sampleBtn {
+  margin: 5px auto;
+  text-align: center;
+  width: 100px; }
+
+.ambigVerb {
+  display: none; }
+
+/* Date and Time */
+.dateTimeContainer {
+  width: 95%; }
+
+.dtConverter {
+  margin: 10px 0; }
+
+.dt {
+  background-color: #efefef;
+  border-collapse: collapse; }
+
+.dt td {
+  border: 1px solid #dddddd;
+  padding: 5px; }
+
+.dtHeading {
+  text-align: center; }
+
+.dtRow {
+  clear: left;
+  border: 1px solid #dddddd; }
+
+.dtLabel {
+  font-weight: bold; }
+
+.dtValueCol {
+  padding: 5px;
+  float: left; }
+
+/* Kana converter */
+.conversionDisplay {
+  border: 1px solid #eeeeee;
+  margin: 10px 0px 0px 0px;
+  width: 160px; }
+
+.conversionDisplay div {
+  width: 160px; }
+
+.conversionDisplay span {
+  font-size: 12px;
+  padding: 4px 5px;
+  text-align: left; }
+
+.outputLabel {
+  display: inline-block;
+  width: 85px; }
+
+.scriptDisplay {
+  font-size: 32px; }
+
+@media screen and (max-width: 480px) {
+  .brand {
+    display: none; }
+
+  .nav {
+    font-size: 16px; }
+
+  ul.nav li {
+    margin: 15px 10px; }
+
+  .nav-link:active {
+    font-size: 20px; } }

@@ -1,0 +1,64 @@
+<% layout('layout') -%>
+<% script('javascripts/dateTimeCurrent.js') -%>
+<% script('javascripts/numberFunctions.js') -%>
+<% block('onload', 'onLoad="getTheDate()"') -%>
+
+	<section class="mainContent">
+      <h4>Welcome to Gengogaku.org.</h4>
+	      <p> Gengogaku, n. linguistics. study of languages. </p>
+	      <div class="menuList">
+		      <dl>
+				  <dt><a href="verbBuilder">Verb builder</a></dt>
+				    <dd>Verbs for 16 different forms</dd>
+				  <dt><a href="adjBuilder">Adjective builder</a></dt>
+				    <dd>Adjectives and adverbs</dd>
+				  <dt><a href="dateAndTime">Date and Time</a></dt>
+				    <dd>Date and time in Japanese</dd>
+				  <dt><a href="numbers">Numbers and Counters</a></dt>
+				    <dd>Numbers and counters  from 1 to 100000.</dd>
+				  <dt><a href="kana">Kana converter</a></dt>
+				    <dd>Hiragana pronunciation, characters and values</dd>
+			  </dl>
+	      </div>
+    	<div>
+	    	<div class="dateTimeContainer">
+    	<table class="gggk-table data-callout">  
+	    	<caption>Current Date and Time</caption>
+	        <thead>  
+	          <tr>  
+	            <th class="builder-labels">&nbsp;</th>  
+	            <th>English</th>  
+	            <th>Romaji</th>  
+	            <th>Kanji</th>  
+	          </tr>  
+	        </thead>  
+	        <tbody>  
+	          <tr>  
+	            <td class="dtLabel builder-labels">Day of week</td>  
+	            <td><span id="dow"></span> </td>  
+	            <td><span id="dowR"></span></td>  
+	            <td><span id="dowK"></span></td>  
+	          </tr>  
+	          <tr>  
+	            <td class="dtLabel builder-labels">Date</td>  
+	            <td><span id="date"></span></td>  
+	            <td><span id="dateR"></span></td>  
+	            <td><span id="dateK"></span></td>  
+	          </tr>  
+	          <tr>  
+	            <td class="dtLabel builder-labels">Time</td>  
+	            <td><span id="time"></span></td>  
+	            <td><span id="timeR"></span></td>  
+	            <td><span id="timeK"></span></td>  
+	          </tr>  
+	          <tr>  
+	            <td class="dtLabel builder-labels">Imperial year</td>  
+	            <td><span></span></td>  
+	            <td><span id="iYearR"></span></td>  
+	            <td><span id="iYearK"></span></td>  
+	          </tr>  
+	        </tbody>  
+	      </table>  
+		    	</div>
+      	    </div>
+      </section>

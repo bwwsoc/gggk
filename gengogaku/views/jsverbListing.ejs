@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Verb Listing</title>
+<script>
+	function updateListing() {
+		document.form1.verbListTF.value = "Affirmative:\n\n" + opener.posOutput + "\n\n" + "Negative:\n\n" + opener.negOutput;
+
+	}
+
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="gggk_style.css" type="text/css">
+</head>
+<body bgcolor="#FFFFFF" text="#000000" onLoad="updateListing()">
+<table width="380" border="0" cellspacing="0" cellpadding="2" align="center">
+<tr>
+          <td align="left" valign="top"> 
+      <p>Here is the listing for 
+<script>
+document.write(opener.thisVerb + ".")
+</script>
+</p>
+            <form name="form1" method="post" action="">
+		      
+        <table width="350" border="1" align="center" cellpadding="4" cellspacing="0">
+          <tr> 
+            <td align="center" valign="top"> 
+              <textarea name="verbListTF" cols="32" rows="33" id="roomajiTF"></textarea>
+            </td>
+            <!-- <td align="left" valign="top">Negative<br>
+               
+              <textarea name="negListTF" cols="32" rows="16" id="kanjiTF"></textarea>
+            </td> -->
+          </tr>
+        </table>
+            </form>
+            <p align="center"><a href="javascript:self.close()">Close window</a></p>
+            <hr>
+            <div align="center">
+                            <!-- end footer menu -->
+              <br>
+              <img src="images/heiwa.gif" width="28" height="18" alt="heiwa"></div></td>
+        </tr>
+      </table>
+</body>
+</html>

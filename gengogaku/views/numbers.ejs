@@ -1,0 +1,77 @@
+<% layout('layout') -%>
+<% script('javascripts/numberFunctions.js') -%>
+<% script('javascripts/numberAndCounters.js') -%>
+
+    <section class="mainContent">
+	    <div class="featureHeading">
+          <p class="featureTitle">Numbers</p>
+		  <p class="featureDescription">This feature displays the Japanese number and counter for any value from 1 to 100000.</p>
+	    </div>
+	    	
+	    <div class="featureSubcontainer">
+         <form name="form1" action="" id="form1">
+              <table  class="gggk-table">
+                <tr> 
+                  <td colspan="2"> Input number 
+                    <input name="numberInput" type="text" size="7" id="numberInput" /> 
+                    <input name="Submit" type="button" onclick="translateNumber()" value="Get Info" /> 
+                    
+                  </td>
+                </tr>
+                <tr> 
+                  <td class="builder-labels"><strong>Number</strong></td>
+                  <td><p class="stacked-labels">Number</p><input name="numberKanjiTF" type="text" id="numberKanjiTF" size="25"/>
+                  <input name="numberRomajiTF" type="text" id="numberRomajiTF" size="35" /></td>
+                </tr>
+                <tr> 
+                  <td class="builder-labels"><strong>People</strong></td>
+                  <td><p class="stacked-labels">People</p><input name="peopleKanjiTF" type="text" id="peopleKanjiTF" size="25" /><input name="peopleRomajiTF" type="text" id="peopleRomajiTF" size="35" /></td>
+                </tr>
+                <tr> 
+                  <td class="builder-labels"><strong>General counter</strong></td>
+                  <td><p class="stacked-labels">General counter</p><input name="generalKanjiTF" type="text" id="generalKanjiTF" value="" size="25" /><input name="generalRomajiTF" type="text" id="generalRomajiTF" size="35" /></td>
+                </tr>
+                <tr> 
+                  <td class="builder-labels"><strong>Flat counter</strong> - stamps, paper, cards, etc.</td>
+                  <td><p class="stacked-labels">Flat counter - stamps, paper, cards</p><input name="flatCounterKanjiTF" type="text" id="flatCounterKanjiTF" value="" size="25" /><input name="flatCounterRomajiTF" type="text" id="flatCounterRomajiTF" size="35" /></td>
+                </tr>
+                <tr> 
+                  <td class="builder-labels"><strong>Long counter</strong> - pencils, trees, umbrellas, 
+                    fingers, etc.</td>
+                  <td><p class="stacked-labels">Long counter - pencils, trees, umbrellas</p><input name="longCounterKanjiTF" type="text" id="longCounterKanjiTF" value="" size="25" /><input name="longCounterRomajiTF" type="text" id="longCounterRomajiTF" size="35" /></td>
+                </tr>
+                <tr> 
+                  <td class="builder-labels"><strong>Years of Age</strong></td>
+                  <td><p class="stacked-labels">Years of Age</p><input name="ageYearsKanjiTF" type="text" id="ageYearsKanjiTF" value="" size="25" /><input name="ageYearsRomajiTF" type="text" id="ageYearsRomajiTF" size="35" /></td>
+                </tr>
+                <tr> 
+                  <td class="builder-labels"><strong>Books</strong></td>
+                  <td><p class="stacked-labels">Books</p><input name="booksKanjiTF" type="text" id="booksKanjiTF" value="" size="25" /><input name="booksRomajiTF" type="text" id="booksRomajiTF" size="35" /></td>
+                </tr>
+                <tr> 
+                  <td class="builder-labels"><strong>Small, non-descript objects</strong></td>
+                  <td><p class="stacked-labels">Small, non-descript objects</p><input name="smallKanjiTF" type="text" id="smallKanjiTF" value="" size="25" /><input name="smallRomajiTF" type="text" id="smallRomajiTF" size="35" /></td>
+                </tr>
+                <tr> 
+                  <td class="builder-labels"><strong>Floors of a building</strong></td>
+                  <td><p class="stacked-labels">Floors of a building</p><input name="floorsKanjiTF" type="text" id="floorsKanjiTF" value="" size="25" /><input name="floorsRomajiTF" type="text" id="floorsRomajiTF" size="35" /></td>
+                </tr>
+                <tr>
+                  <td class="builder-labels"><strong>Large animals</strong> - horses, cows, etc.</td>
+                  <td><p class="stacked-labels">Large animals - horses, cows</p><input name="animalsLKnajiTF" type="text" id="animalsLKnajiTF" value="" size="25" /><input name="animalsLRomajiTF" type="text" id="animalsLRomajiTF" size="35" /></td>
+                </tr>
+                <tr>
+                  <td class="builder-labels"><strong>Small animals</strong> - cats, dogs, etc.</td>
+                  <td><p class="stacked-labels">Small animals - cats, dogs</p><input name="animalsSKanjiTF" type="text" id="animalsSKanjiTF" value="" size="25" /><input name="animalsSRomajiTF" type="text" id="animalsSRomajiTF" size="35" /></td>
+                </tr>
+                <tr>
+                  <td class="builder-labels"><strong>Flying and hopping animals</strong> - birds, frogs, 
+                    etc.</td>
+                  <td><p class="stacked-labels">Flying and hopping animals - birds, frogs</p><input name="animalsFKanjiTF" type="text" id="animalsFKanjiTF" value="" size="25" /><input name="animalsFRomajiTF" type="text" id="animalsFRomajiTF" size="35" /></td>
+                </tr>
+              </table>
+            </form>
+           </div>          
+
+	    	
+    </section>

@@ -1,0 +1,87 @@
+<% layout('layout') -%>
+<% script('javascripts/kana.js') -%>
+
+    <section class="mainContent">
+	    <div class="featureHeading">
+          <p class="featureTitle">Kana converter</p>
+		  <p class="featureDescription">This feature provides kana script information. Acceptable inputs are kana script character, integer value, hex/unicode value or romaji literal.</p>
+	    </div>
+ 	    <div class="featureSubcontainer">
+    	<div class="tryIt">
+    		<span class="tryIt-label">Try it!</span>
+    		<div class="tryIt-examples">
+    			<div class="tryIt-example">
+	    			<button class="kExample" onClick="tryKana(this)">ぱ</button>
+    			</div>
+    			<div class="tryIt-example">
+	    			<button class="" onClick="tryKana(this)">ka</button>
+    			</div>
+    			<div class="tryIt-example">
+	    			<button class="" onClick="tryKana(this)">306C</button>
+    			</div>
+    			<div class="tryIt-example">
+	    			<button class="" onClick="tryKana(this)">12415</button>
+    			</div>
+    			<div class="tryIt-example">
+	    			<button class="kExample" onClick="tryKana(this)">き</button>
+    			</div>
+    			<div class="tryIt-example">
+	    			<button class="" onClick="tryKana(this)">mu</button>
+    			</div>
+    			<div class="tryIt-example">
+	    			<button class="" onClick="tryKana(this)">308D</button>
+    			</div>
+    			<div class="tryIt-example">
+	          <button class="" onClick="tryRandom()">Random</button>
+    			</div>
+    		</div>
+    	</div>
+    	
+          <div>
+          		<input type="text" id="conversionInput">
+          		<button id="kConvertBtn" class="buildBtn" onClick="doKanaConversion()">Convert</button>
+          </div>
+ 	    </div>
+	    <div class="featureSubcontainer">
+	          <div class="conversionDisplay">
+				<div><span class="outputLabel">Pronunciation:</span><span class="valueDisplay" id="pronunciation"></span></div>
+				<div><span class="outputLabel">Unicode value:</span><span class="valueDisplay" id="unicodeValue"></span></div>
+				<div><span class="outputLabel">Integer value:</span><span class="valueDisplay" id="intValue"></span></div>
+				<div id="scriptDisplay" class="scriptDisplay"></div>
+	          </div>
+	    </div>  
+	    	
+    </section>
+
+    <script>
+    	function tryKana(el) {
+	    	document.getElementById("conversionInput").value = el.innerHTML;
+	    	console.log(el);
+	    	document.getElementById("kConvertBtn").click();
+	    	
+    	}
+    	function tryKChar() {
+	    	document.getElementById("conversionInput").value = "\u3071";
+	    	document.getElementById("kConvertBtn").click();
+
+    	}
+    	function tryIntValue() {
+	    	document.getElementById("conversionInput").value = 12415;
+	    	document.getElementById("kConvertBtn").click();
+
+    	}
+    	function tryUValue() {
+	    	document.getElementById("conversionInput").value = "306C";
+	    	document.getElementById("kConvertBtn").click();
+
+    	}
+    	function tryRLiteral() {
+	    	document.getElementById("conversionInput").value = "ka";
+	    	document.getElementById("kConvertBtn").click();
+
+    	}
+    	function tryRandom() {
+	    	document.getElementById("conversionInput").value = getRandomKana();
+	    	document.getElementById("kConvertBtn").click();
+    	}
+    </script>
