@@ -1,4 +1,3 @@
-// copyright 2001 Barry Waid
 	var verbKind = -1;
 	var thisVerb = "";
 	var vDicForm, vDicStem ;
@@ -14,25 +13,15 @@
 
 	function tryVerbs(el) {
     	document.getElementById("dfinTF").value = el.innerHTML;
-    	console.log(el);
     	vDicForm = el.innerHTML;
     	doCharSetCheck();
 	}
-	function tryHiragana(evt) {
-    	console.log(evt);
-		var eventReference = (typeof evt !== "undefined")? evt : event;
-		var eventTarget = (typeof eventReference.target !== "undefined")? eventReference.target : eventReference.srcElement;
-    	document.getElementById("dfinTF").value = eventTarget.innerHTML;
-    	vDicForm = eventTarget.innerHTML;;
-    	doCharSetCheck();
-	}
-
 
 	function doVerb() {
 		clearOutputs();
 		writeVerbs();
 	    vDicForm = document.getElementById("dfinTF").value;
-		console.log('charCode:' + vDicForm.charCodeAt(0));
+		qp('charCode:' + vDicForm.charCodeAt(0));
 		doCharSetCheck();
 	}
 	
