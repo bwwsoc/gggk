@@ -9,7 +9,6 @@
 	var vDicFormLen, endInd, yodanKind;
 	var string, oldString = null;
 	var verbKindvalue;
-	var debug = true;
 	var posOutput = "";
 	var negOutput = "";
 

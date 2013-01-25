@@ -121,10 +121,10 @@ section {
 
 .tryIt-example-dt {
   float: left;
-  margin: 0 5%;
+  margin: 0 1%;
   min-height: 33px;
   text-align: center;
-  width: 110px; }
+  width: 120px; }
 
 .tryIt-example-label {
   display: block;
