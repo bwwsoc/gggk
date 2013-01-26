@@ -765,7 +765,3 @@ function clearOutputs() {
 
 }
 
-//remove
-function openWin(theURL,winName,features) { 
-  window.open(theURL,winName,features);
-}
