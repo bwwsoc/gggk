@@ -141,11 +141,13 @@
 	            <td id="simultaneous">   </td>
 	            <td id="negSimultaneous"> n/a   </td>
 	          </tr>
-	          <!--tr> 
-	            <td colspan="3"><a href="#" onClick="openWin('jsverblisting','','scrollbars=yes,resizable=yes,width=400,height=515')">View results in single text area for easy copy 
-	                    and paste.</a> <p><a name="moreinfo"></a></p></td>
-	          </tr-->	
+	          <tr> 
+	            <td colspan="3"><a href="#fullList" onClick="showList()">View results in single text area for easy copy and paste.</a></td>
+	          </tr>	
 	        </table>
+	        <div id="fullList" class="fullList" name="fullList">
+              <textarea id="fullListTA" cols="32" rows="42"></textarea>	        
+	        </div>	        
     	</div>	
     	<div class="featureSubcontainer">
 	        <table class="gggk-table data-callout">
@@ -245,3 +247,22 @@
 	        </table>		    		        	    	
         </div>
     </section>
+    
+    
+    <script>
+    	function showList() {
+	    	document.getElementById("fullListTA").value = "Affirmative:\n\n" + posOutput + "\n\n" + "Negative:\n\n" + negOutput;
+	    	document.getElementById("fullList").style.display = "block";
+    	}
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

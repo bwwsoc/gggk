@@ -9,12 +9,30 @@
 	    </div>
 	    	
 	    <div class="featureSubcontainer">
+    	<div class="tryIt">
+    		<span class="tryIt-label">Try it!</span>
+    		<div class="tryIt-examples">
+    			<div class="tryIt-example">
+    				<button class="btn" onclick="tryNumber(this)">1</button>
+    			</div>
+    			<div class="tryIt-example">
+    				<button class="btn" onclick="tryNumber(this)">128</button>
+    			</div>
+    			<div class="tryIt-example">
+    				<button class="btn" onclick="tryNumber(this)">1024</button>
+    			</div>
+    			<div class="tryIt-example">
+    				<button class="btn" onclick="tryNumber(this)">99999</button>
+    			</div>
+    		</div>
+    	</div>
+
          <form name="form1" action="" id="form1">
               <table  class="gggk-table">
                 <tr> 
                   <td colspan="2">Number:
-                    <input name="numberInput" type="text" size="7" id="numberInput" /> 
-                    <input name="Submit" type="button" onclick="translateNumber()" value="Numbers" /> 
+                    <input id="numberInput"  name="numberInput" type="text" size="7"/> 
+                    <input id="getNumbers" name="Submit" type="button" onclick="translateNumber()" value="Numbers" /> 
                     
                   </td>
                 </tr>
@@ -75,3 +93,11 @@
 
 	    	
     </section>
+    
+        <script>
+	function tryNumber(el) {
+    	document.getElementById("numberInput").value = el.innerHTML;
+    	document.getElementById("getNumbers").click();
+	}
+    
+    </script>

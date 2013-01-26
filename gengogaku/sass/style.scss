@@ -177,9 +177,12 @@ section {
 }
 
 /* Verb builder */
+.ambigVerb {
+	display: none;
+}
 
-.verbCol {
-	width: 160px;
+.fullList {
+	display: none;
 }
 
 .sampleBtn {
@@ -196,8 +199,8 @@ section {
 	@include border-bottom-left-radius(0);
 }
 
-.ambigVerb {
-	display: none;
+.verbCol {
+	width: 160px;
 }
 
 
