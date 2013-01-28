@@ -23,6 +23,7 @@
 	}
 
 	function useVbEnding(vDicForm) {
+		qp("useVbEnding: " + vDicForm);
 		var verbKind;
 
 		if (vDicForm.lastIndexOf("iru") !== -1 || vDicForm.lastIndexOf("eru") !== -1) {
@@ -33,553 +34,307 @@
 
 			verbKind = 3;
 		}
+		qp("useVbEnding-verbKind: " + verbKind);
 		return verbKind;
 	}//useEnding
-
 	
 
-	function setWhich(verbKindValue) {
+	function buildVbIchidan(verbForm) {
+		qp("buildVbIchidan-I: " + verbForm.vDictForm);
 
-		verbKind = parseInt(verbKindValue);
+		var vDicForm = verbForm.vDictForm;
+		var endInd = vDicForm.length - 2;
+		var bv8 = vDicForm.length - 1;
+		var vDicStem = vDicForm.substring(0, endInd);
+		qp("vDicForm-I: " + vDicForm);
 
-				document.getElementById("ichidanVTF").value = "";
+		verbForm.baseV1 = vDicStem;
+		verbForm.baseV2 = vDicStem;
+		verbForm.baseV3 = vDicStem + "ru";
+		verbForm.baseV4 = vDicStem + "re";
+		verbForm.baseV5 = vDicStem + "yoo";
+		verbForm.baseV6 = vDicStem + "te";
+		verbForm.baseV7 = vDicStem + "ta";
+		verbForm.baseV8 = vDicForm.substring(0, bv8);
 
-				document.getElementById("yodanVTF").value = "";
-		qp(verbKind);
-		document.getElementById("ambigVerb1").style.display = "none";
-		document.getElementById("ambigVerb2").style.display = "none";
-
-		build();
-
-	}//setWhich
-
-	
-
-	
-
-	function buildIchidanBase() {
-
-		endInd = vDicFormLen - 2;
-
-		bv8 = vDicFormLen - 1;
-
-		vDicStem = vDicForm.substring(0, endInd);
-
-		qp(vDicStem);
-
-		baseV1 = vDicStem;
-
-		baseV2 = vDicStem;
-
-		baseV3 = vDicStem + "ru";
-
-		baseV4 = vDicStem + "re";
-
-		baseV5 = vDicStem + "yoo";
-
-		baseV6 = vDicStem + "te";
-
-		baseV7 = vDicStem + "ta";
-
-		baseV8 = vDicForm.substring(0, bv8);
-
-		buildVerb();	
+		buildVerbForm(verbForm);	
 
 	}//buildBaseIchidan
 
 	
 
-	function buildYodanBase() {
+	function buildVbYodan(verbForm) {
+		var vDicForm = verbForm.vDictForm;	
+		var vDicFormLen = vDicForm.length;
+		var vDicStem;
+		var endInd;
+		var yodanKind;	
+		var bv8 = vDicForm.length - 1;
+		var baseV1;
+		var baseV2;
+		var baseV3;
+		var baseV4;
+		var baseV5;
+		var baseV6;
+		var baseV7;
+		var baseV8 = vDicForm.substring(0, bv8);
 
-			if (vDicForm.lastIndexOf("au") !== -1 || vDicForm.lastIndexOf("iu") !== -1 || vDicForm.lastIndexOf("ou") !== -1) {
+		if (vDicForm.lastIndexOf("au") !== -1 || vDicForm.lastIndexOf("iu") !== -1 || vDicForm.lastIndexOf("ou") !== -1) {
+			yodanKind = 0;
+			endInd = vDicFormLen - 1;
+			vDicStem = vDicForm.substring(0, endInd);
+			baseV1 = vDicStem + "wa";
+			baseV2 = vDicStem + "i";
+			baseV3 = vDicStem + "u";
+			baseV4 = vDicStem + "e";
+			baseV5 = vDicStem + "oo";
+			baseV6 = vDicStem + "tte";
+			baseV7 = vDicStem + "tta";
+		}//U verb
 
-				yodanKind = 0;
+		else if (vDicForm.lastIndexOf("tsu") !== -1) {
+			yodanKind = 1;
+			endInd = vDicFormLen - 3;
+			vDicStem = vDicForm.substring(0, endInd);
+			baseV1 = vDicStem + "ta";
+			baseV2 = vDicStem + "chi";
+			baseV3 = vDicStem + "tsu";
+			baseV4 = vDicStem + "te";
+			baseV5 = vDicStem + "too";
+			baseV6 = vDicStem + "tte";
+			baseV7 = vDicStem + "tta";
+		}//tsu
 
-				endInd = vDicFormLen - 1;
+		else if (vDicForm.lastIndexOf("ru") !== -1) {
+			yodanKind = 2;
+			endInd = vDicFormLen - 2;
+			vDicStem = vDicForm.substring(0, endInd);
+			baseV1 = vDicStem + "ra";
+			baseV2 = vDicStem + "ri";
+			baseV3 = vDicStem + "ru";
+			baseV4 = vDicStem + "re";
+			baseV5 = vDicStem + "roo";
+			baseV6 = vDicStem + "tte";
+			baseV7 = vDicStem + "tta";
+		}//ru
 
-				vDicStem = vDicForm.substring(0, endInd);
+		else if (vDicForm.lastIndexOf("ku") !== -1) {
+			yodanKind = 3;
+			endInd = vDicFormLen - 2;
+			vDicStem = vDicForm.substring(0, endInd);
+			baseV1 = vDicStem + "ka";
+			baseV2 = vDicStem + "ki";
+			baseV3 = vDicStem + "ku";
+			baseV4 = vDicStem + "ke";
+			baseV5 = vDicStem + "koo";
 
-				baseV1 = vDicStem + "wa";
-
-				baseV2 = vDicStem + "i";
-
-				baseV3 = vDicStem + "u";
-
-				baseV4 = vDicStem + "e";
-
-				baseV5 = vDicStem + "oo";
-
+			if (vDicForm.lastIndexOf("iku") !== -1) {
 				baseV6 = vDicStem + "tte";
-
 				baseV7 = vDicStem + "tta";
-
-				}//U verb
-
-			else if (vDicForm.lastIndexOf("tsu") !== -1) {
-
-				yodanKind = 1;
-
-				endInd = vDicFormLen - 3;
-
-				vDicStem = vDicForm.substring(0, endInd);
-
-				baseV1 = vDicStem + "ta";
-
-				baseV2 = vDicStem + "chi";
-
-				baseV3 = vDicStem + "tsu";
-
-				baseV4 = vDicStem + "te";
-
-				baseV5 = vDicStem + "too";
-
-				baseV6 = vDicStem + "tte";
-
-				baseV7 = vDicStem + "tta";
-
-			}//tsu
-
-			else if (vDicForm.lastIndexOf("ru") !== -1) {
-
-				yodanKind = 2;
-
-				endInd = vDicFormLen - 2;
-
-				vDicStem = vDicForm.substring(0, endInd);
-
-				baseV1 = vDicStem + "ra";
-
-				baseV2 = vDicStem + "ri";
-
-				baseV3 = vDicStem + "ru";
-
-				baseV4 = vDicStem + "re";
-
-				baseV5 = vDicStem + "roo";
-
-				baseV6 = vDicStem + "tte";
-
-				baseV7 = vDicStem + "tta";
-
-			}//ru
-
-			else if (vDicForm.lastIndexOf("ku") !== -1) {
-
-				yodanKind = 3;
-
-				endInd = vDicFormLen - 2;
-
-				vDicStem = vDicForm.substring(0, endInd);
-
-				baseV1 = vDicStem + "ka";
-
-				baseV2 = vDicStem + "ki";
-
-				baseV3 = vDicStem + "ku";
-
-				baseV4 = vDicStem + "ke";
-
-				baseV5 = vDicStem + "koo";
-
-				if (vDicForm.lastIndexOf("iku") !== -1) {
-
-					baseV6 = vDicStem + "tte";
-
-					baseV7 = vDicStem + "tta";
-
-				}//iku
-
-				else {
-
-					baseV6 = vDicStem + "ite";
-
-					baseV7 = vDicStem + "ita";				
-
-				}//else
-
-			}//ku
-
-			else if (vDicForm.lastIndexOf("gu") !== -1) {
-
-				yodanKind = 4;
-
-				endInd = vDicFormLen - 2;
-
-				vDicStem = vDicForm.substring(0, endInd);
-
-				baseV1 = vDicStem + "ga";
-
-				baseV2 = vDicStem + "gi";
-
-				baseV3 = vDicStem + "gu";
-
-				baseV4 = vDicStem + "ge";
-
-				baseV5 = vDicStem + "goo";
-
-				baseV6 = vDicStem + "ide";
-
-				baseV7 = vDicStem + "ida";
-
-			}//gu
-
-			else if (vDicForm.lastIndexOf("su") !== -1) {
-
-				yodanKind = 5;
-
-				endInd = vDicFormLen - 2;
-
-				vDicStem = vDicForm.substring(0, endInd);
-
-				baseV1 = vDicStem + "sa";
-
-				baseV2 = vDicStem + "shi";
-
-				baseV3 = vDicStem + "su";
-
-				baseV4 = vDicStem + "se";
-
-				baseV5 = vDicStem + "soo";
-
-				baseV6 = vDicStem + "shite";
-
-				baseV7 = vDicStem + "shita";
-
-			}//su
-
-			else if (vDicForm.lastIndexOf("nu") !== -1) {
-
-				yodanKind = 6;
-
-				endInd = vDicFormLen - 2;
-
-				vDicStem = vDicForm.substring(0, endInd);
-
-				baseV1 = vDicStem + "na";
-
-				baseV2 = vDicStem + "ni";
-
-				baseV3 = vDicStem + "nu";
-
-				baseV4 = vDicStem + "ne";
-
-				baseV5 = vDicStem + "noo";
-
-				baseV6 = vDicStem + "nde";
-
-				baseV7 = vDicStem + "nda";
-
-			}//nu
-
-			else if (vDicForm.lastIndexOf("mu") !== -1) {
-
-				yodanKind = 7;
-
-				endInd = vDicFormLen - 2;
-
-				vDicStem = vDicForm.substring(0, endInd);
-
-				baseV1 = vDicStem + "ma";
-
-				baseV2 = vDicStem + "mi";
-
-				baseV3 = vDicStem + "mu";
-
-				baseV4 = vDicStem + "me";
-
-				baseV5 = vDicStem + "moo";
-
-				baseV6 = vDicStem + "nde";
-
-				baseV7 = vDicStem + "nda";
-
-			}//mu
-
-			else if (vDicForm.lastIndexOf("bu") !== -1) {
-
-				yodanKind = 8;
-
-				endInd = vDicFormLen - 2;
-
-				vDicStem = vDicForm.substring(0, endInd);
-
-				baseV1 = vDicStem + "ba";
-
-				baseV2 = vDicStem + "bi";
-
-				baseV3 = vDicStem + "bu";
-
-				baseV4 = vDicStem + "be";
-
-				baseV5 = vDicStem + "boo";
-
-				baseV6 = vDicStem + "nde";
-
-				baseV7 = vDicStem + "nda";
-
-			}//bu
-
-		bv8 = vDicFormLen - 1;
-
-		baseV8 = vDicForm.substring(0, bv8);
-
-		buildVerb();
-
+			}//iku
+			else {
+				baseV6 = vDicStem + "ite";
+				baseV7 = vDicStem + "ita";				
+			}//else
+		}//ku
+		else if (vDicForm.lastIndexOf("gu") !== -1) {
+			yodanKind = 4;
+			endInd = vDicFormLen - 2;
+			vDicStem = vDicForm.substring(0, endInd);
+			baseV1 = vDicStem + "ga";
+			baseV2 = vDicStem + "gi";
+			baseV3 = vDicStem + "gu";
+			baseV4 = vDicStem + "ge";
+			baseV5 = vDicStem + "goo";
+			baseV6 = vDicStem + "ide";
+			baseV7 = vDicStem + "ida";
+		}//gu
+
+		else if (vDicForm.lastIndexOf("su") !== -1) {
+			yodanKind = 5;
+			endInd = vDicFormLen - 2;
+			vDicStem = vDicForm.substring(0, endInd);
+			baseV1 = vDicStem + "sa";
+			baseV2 = vDicStem + "shi";
+			baseV3 = vDicStem + "su";
+			baseV4 = vDicStem + "se";
+			baseV5 = vDicStem + "soo";
+			baseV6 = vDicStem + "shite";
+			baseV7 = vDicStem + "shita";
+		}//su
+
+		else if (vDicForm.lastIndexOf("nu") !== -1) {
+			yodanKind = 6;
+			endInd = vDicFormLen - 2;
+			vDicStem = vDicForm.substring(0, endInd);
+			baseV1 = vDicStem + "na";
+			baseV2 = vDicStem + "ni";
+			baseV3 = vDicStem + "nu";
+			baseV4 = vDicStem + "ne";
+			baseV5 = vDicStem + "noo";
+			baseV6 = vDicStem + "nde";
+			baseV7 = vDicStem + "nda";
+		}//nu
+
+		else if (vDicForm.lastIndexOf("mu") !== -1) {
+			yodanKind = 7;
+			endInd = vDicFormLen - 2;
+			vDicStem = vDicForm.substring(0, endInd);
+			baseV1 = vDicStem + "ma";
+			baseV2 = vDicStem + "mi";
+			baseV3 = vDicStem + "mu";
+			baseV4 = vDicStem + "me";
+			baseV5 = vDicStem + "moo";
+			baseV6 = vDicStem + "nde";
+			baseV7 = vDicStem + "nda";
+		}//mu
+
+		else if (vDicForm.lastIndexOf("bu") !== -1) {
+			yodanKind = 8;
+			endInd = vDicFormLen - 2;
+			vDicStem = vDicForm.substring(0, endInd);
+			baseV1 = vDicStem + "ba";
+			baseV2 = vDicStem + "bi";
+			baseV3 = vDicStem + "bu";
+			baseV4 = vDicStem + "be";
+			baseV5 = vDicStem + "boo";
+			baseV6 = vDicStem + "nde";
+			baseV7 = vDicStem + "nda";
+		}//bu
+		verbForm.baseV1 = baseV1;
+		verbForm.baseV2 = baseV2;
+		verbForm.baseV3 = baseV3;
+		verbForm.baseV4 = baseV4;
+		verbForm.baseV5 = baseV5;
+		verbForm.baseV6 = baseV6;
+		verbForm.baseV7 = baseV7;
+		verbForm.baseV8 = baseV8;
+
+		buildVerbForm(verbForm);
 	}//buildBaseYodan
 
 	
 
 
-	function buildVerb() {
+	function buildVerbForm(verbForm) {
 
-			vPPres = vDicForm;
-
-			vPPast = baseV7;
-
-			vPres = baseV2 + "masu";
-
-			vPast = baseV2 + "mashita";
-
-			vVol = baseV2 + "mashoo";
-
-			
-
-			vTe = baseV6;
-
-			vDesid = baseV2 + "tai";
-
-			vEba = baseV4 + "ba";
-
-			vRa = baseV7 + "ra";
-
-			vIter = baseV7 + "ri";
-
-			vSim = baseV2 + "nagara";
-
-			vNPPres = baseV1 + "nai";
-
-			vNPPast = baseV1 + "nakatta";
-
-			vNPres = baseV2 + "masen";
-
-			vNPast = baseV2 + "masen deshita";
-
-			vNTe = baseV1 + "nakute";
-
-			vNDesid = baseV2 + "taku nai";
-
-			vNEba = baseV1 + "nakereba";
-
-			vNRa = baseV1 + "nakattara";
-
-			vNIter = baseV1 + "nakattari";
-
-			
+			verbForm.vPPres = verbForm.vDictForm;
+			verbForm.vPPast = verbForm.baseV7;
+			verbForm.vPres = verbForm.baseV2 + "masu";
+			verbForm.vPast = verbForm.baseV2 + "mashita";
+			verbForm.vVol = verbForm.baseV2 + "mashoo";
+			verbForm.vTe = verbForm.baseV6;
+			verbForm.vDesid = verbForm.baseV2 + "tai";
+			verbForm.vEba = verbForm.baseV4 + "ba";
+			verbForm.vRa = verbForm.baseV7 + "ra";
+			verbForm.vIter = verbForm.baseV7 + "ri";
+			verbForm.vSim = verbForm.baseV2 + "nagara";
+			verbForm.vNPPres = verbForm.baseV1 + "nai";
+			verbForm.vNPPast = verbForm.baseV1 + "nakatta";
+			verbForm.vNPres = verbForm.baseV2 + "masen";
+			verbForm.vNPast = verbForm.baseV2 + "masen deshita";
+			verbForm.vNTe = verbForm.baseV1 + "nakute";
+			verbForm.vNDesid = verbForm.baseV2 + "taku nai";
+			verbForm.vNEba = verbForm.baseV1 + "nakereba";
+			verbForm.vNRa = verbForm.baseV1 + "nakattara";
+			verbForm.vNIter = verbForm.baseV1 + "nakattari";
 
 			if (verbKind === 2) {
-
-				vPassive = baseV1 + "rareru";
-
-				vCaus = baseV1 + "saseru";
-
-				vPot = baseV1 + "rareru";
-
-				vNPassive = baseV1 + "rarenai";
-
-				vNCaus = baseV1 + "sasenai";
-
-				vImp = baseV8 + "o";
-
-				vVolPlain = baseV2 + "yoo";				
-
-				vNPot = baseV1 + "rarenai";
-
-				}//ichicdan
-
+				verbForm.vPassive = verbForm.baseV1 + "rareru";
+				verbForm.vCaus = verbForm.baseV1 + "saseru";
+				verbForm.vPot = verbForm.baseV1 + "rareru";
+				verbForm.vNPassive = verbForm.baseV1 + "rarenai";
+				verbForm.vNCaus = verbForm.baseV1 + "sasenai";
+				verbForm.vImp = verbForm.baseV8 + "o";
+				verbForm.vVolPlain = verbForm.baseV2 + "yoo";				
+				verbForm.vNPot = verbForm.baseV1 + "rarenai";
+			}//ichicdan
 				
-
 			else {
 
-				vPassive = baseV1 + "reru";
-
-				vCaus = baseV1 + "seru";
-
-				vPot = baseV4 + "ru";
-
-				vNPassive = baseV1 + "renai";
-
-				vNCaus = baseV1 + "senai";
-
-				vNPot = baseV4 + "nai";
-
-				vImp = baseV8 + "e";
-
-				vVolPlain = baseV8 + "oo";
-
-				}//yodan
+				verbForm.vPassive = verbForm.baseV1 + "reru";
+				verbForm.vCaus = verbForm.baseV1 + "seru";
+				verbForm.vPot = verbForm.baseV4 + "ru";
+				verbForm.vNPassive = verbForm.baseV1 + "renai";
+				verbForm.vNCaus = verbForm.baseV1 + "senai";
+				verbForm.vNPot = verbForm.baseV4 + "nai";
+				verbForm.vImp = verbForm.baseV8 + "e";
+				verbForm.vVolPlain = verbForm.baseV8 + "oo";
+			}//yodan
 
 	}//buildverb
 
 	
 
-	function buildKuru() {
+	function buildVbKuru(verbForm) {
 
-		vPPres = "kuru";
-
-		vPPast = "kita";
-
-		vPres = "kimasu";
-
-		vPast = "kimashita";
-
-		vVol = "kimashoo";
-
-		vVolPlain = "koyoo";
-
-		vTe = "kite";
-
-		vPassive = "korareru";
-
-		vDesid = "kitai";
-
-		vCaus = "kosaseru";
-
-		vEba = "kureba";
-
-		vRa = "kitara";
-
-		vPot = "korareru";
-
-		vIter = "kitari";
-
-		vSim = "kinagara";
-
-		vImp = "koi";
-
-		vNPPres = "konai";
-
-		vNPPast = "konakatta";
-
-		vNPres = "kimasen";
-
-		vNPast = "kimasen deshita";
-
-		vNTe = "konakute";
-
-		vNPassive = "korarenai";
-
-		vNDesid = "kitaku nai";
-
-		vNCaus = "kosasenai";
-
-		vNEba = "konakereba";
-
-		vNRa = "konakattara";
-
-		vNPot = "korareru";
-
-
+		verbForm.vPPres = "kuru";
+		verbForm.vPPast = "kita";
+		verbForm.vPres = "kimasu";
+		verbForm.vPast = "kimashita";
+		verbForm.vVol = "kimashoo";
+		verbForm.vVolPlain = "koyoo";
+		verbForm.vTe = "kite";
+		verbForm.vPassive = "korareru";
+		verbForm.vDesid = "kitai";
+		verbForm.vCaus = "kosaseru";
+		verbForm.vEba = "kureba";
+		verbForm.vRa = "kitara";
+		verbForm.vPot = "korareru";
+		verbForm.vIter = "kitari";
+		verbForm.vSim = "kinagara";
+		verbForm.vImp = "koi";
+		verbForm.vNPPres = "konai";
+		verbForm.vNPPast = "konakatta";
+		verbForm.vNPres = "kimasen";
+		verbForm.vNPast = "kimasen deshita";
+		verbForm.vNTe = "konakute";
+		verbForm.vNPassive = "korarenai";
+		verbForm.vNDesid = "kitaku nai";
+		verbForm.vNCaus = "kosasenai";
+		verbForm.vNEba = "konakereba";
+		verbForm.vNRa = "konakattara";
+		verbForm.vNPot = "korareru";
 
 	}//buildKuru
 
 
 
-	function buildSuru() {
+	function buildVbSuru(verbForm) {
 
-		vPPres = "suru";
-
-		vPPast = "shita";
-
-		vPres = "shimasu";
-
-		vPast = "shimashita";
-
-		vVol = "shimashoo";
-
-		vVolPlain = "shiyoo";
-
-		vTe = "shite";
-
-		vPassive = "sareru";
-
-		vDesid = "shitai";
-
-		vCaus = "saseru";
-
-		vEba = "sureba";
-
-		vRa = "shitara";
-
-		vPot = "(dekiru)";
-
-		vIter = "shitari";
-
-		vSim = "shinagara";
-
-		vImp = "shiro";
-
-		vNPPres = "shinai";
-
-		vNPPast = "shinakatta";
-
-		vNPres = "shimasen";
-
-		vNPast = "shimasen deshita";
-
-		vNTe = "shinakute";
-
-		vNPassive = "sarenai";
-
-		vNDesid = "shitaku nai";
-
-		vNCaus = "sasenai";
-
-		vNEba = "shinakereba";
-
-		vNRa = "shinakattara";
-
-		vNPot = "(dekinai)";
+		verbForm.vPPres = "suru";
+		verbForm.vPPast = "shita";
+		verbForm.vPres = "shimasu";
+		verbForm.vPast = "shimashita";
+		verbForm.vVol = "shimashoo";
+		verbForm.vVolPlain = "shiyoo";
+		verbForm.vTe = "shite";
+		verbForm.vPassive = "sareru";
+		verbForm.vDesid = "shitai";
+		verbForm.vCaus = "saseru";
+		verbForm.vEba = "sureba";
+		verbForm.vRa = "shitara";
+		verbForm.vPot = "(dekiru)";
+		verbForm.vIter = "shitari";
+		verbForm.vSim = "shinagara";
+		verbForm.vImp = "shiro";
+		verbForm.vNPPres = "shinai";
+		verbForm.vNPPast = "shinakatta";
+		verbForm.vNPres = "shimasen";
+		verbForm.vNPast = "shimasen deshita";
+		verbForm.vNTe = "shinakute";
+		verbForm.vNPassive = "sarenai";
+		verbForm.vNDesid = "shitaku nai";
+		verbForm.vNCaus = "sasenai";
+		verbForm.vNEba = "shinakereba";
+		verbForm.vNRa = "shinakattara";
+		verbForm.vNPot = "(dekinai)";
 
 
 
 	}//buildSuru
 
-	
 
-	function writeVerbs() {
-
-		document.getElementById("plainPresent").innerHTML=vPPres;
-		document.getElementById("plainPast").innerHTML=vPPast;
-		document.getElementById("politePresent").innerHTML=vPres;
-		document.getElementById("politePast").innerHTML=vPast;
-		document.getElementById("plainVol").innerHTML=vVolPlain;
-		document.getElementById("politeVol").innerHTML=vVol;
-		document.getElementById("te").innerHTML=vTe;
-		document.getElementById("plainPass").innerHTML=vPassive;
-		document.getElementById("imperative").innerHTML=vImp;
-		document.getElementById("desiderative").innerHTML=vDesid;
-		document.getElementById("causative").innerHTML=vCaus;
-		document.getElementById("eba").innerHTML=vEba;
-		document.getElementById("ra").innerHTML=vRa;
-		document.getElementById("potential").innerHTML=vPot;
-		document.getElementById("iterative").innerHTML=vIter;
-		document.getElementById("simultaneous").innerHTML=vSim;
-		document.getElementById("negPlainPresent").innerHTML=vNPPres;
-		document.getElementById("negPlainPast").innerHTML=vNPPast;
-		document.getElementById("negPolitePresent").innerHTML=vNPres;
-		document.getElementById("negPolitePast").innerHTML=vNPast;
-		document.getElementById("negTe").innerHTML=vNTe;
-		document.getElementById("negPlainPass").innerHTML=vNPassive;
-		document.getElementById("negDesiderative").innerHTML=vNDesid;
-		document.getElementById("negCausative").innerHTML=vNCaus;
-		document.getElementById("negEba").innerHTML=vNEba;
-		document.getElementById("negRa").innerHTML=vNRa;
-		document.getElementById("negPotential").innerHTML=vNPot;
-		document.getElementById("negIterative").innerHTML=vNIter;
-
-		
-		fullOutput();
-	}//writeVerbs
 
 	function fullOutput() {
 		posOutput = "Plain Present: " + vPPres + "\nPlan Past: " + vPPast + "\nPolite Present: " + vPres + "\nPolite Past: " + vPast + "\nVolitional (plain): " + vVolPlain + "\nVolitional (polite): " + vVol + "\nTe-form/gerund: " + vTe + "\nPassive (plain): " + vPassive + "\nImperative: " + vImp + "\nDesidearative: " + vDesid + "\nCausative: " + vCaus + "\nConditional -eba: " + vEba + "\nConditional -ra: " + vRa + "\nPotential (plain): " + vPot + "\nIterative: " + vIter + "\nSimultaneous: " + vSim;

@@ -13,23 +13,22 @@
 
 //////////////
 	function VerbForms(dictForm, vKind) {
-		var vDictForm = dictForm;
-		var vDictFormLen = vDictForm.length; //needed?
+		this.vDictForm = dictForm;
 		var charType = dictForm.charCodeAt(0) > 1000 ? "h" : "r";
 		if (vKind > 0) { // passed in for ambig
 			this.verbKind = vKind;
 		}
 		else {
-			this.verbKind = charType === "h" ? setVbKindH(vDictForm) : setVbKind(vDictForm);			
+			this.verbKind = charType === "h" ? setVbKindH(this.vDictForm) : setVbKind(this.vDictForm);			
 		}
 		// if romaji
 		if (charType === "r") {
-		switch (this.verbKind) {
-	
-				case 0: buildVKuru(this); break;	
-				case 1: buildVSuru(this); break;	
-				case 2: buildVIchidanBase(this); break;	
-				case 3: buildVYodanBase(this); break;	
+		qp("verbKind: " + this.verbKind);
+			switch (this.verbKind) {	
+				case 0: buildVbKuru(this); break;	
+				case 1: buildVbSuru(this); break;	
+				case 2: buildVbIchidan(this); break;	
+				case 3: buildVbYodan(this); break;	
 				default: qp("unknown verb");	
 			}				
 		}

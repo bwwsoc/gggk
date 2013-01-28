@@ -1,6 +1,7 @@
 <% layout('layout') -%>
 <% script('javascripts/verbs.js') -%>
 <% script('javascripts/verbs-h.js') -%>
+<% script('javascripts/newVerbs.js') -%>
 
 	<section class="mainContent">
 	    <div class="featureHeading">
@@ -39,7 +40,7 @@
 	            <td><span>Dictionary Form:</span>
 	             <input id="dfinTF" type="text" value="" name="dfinTF" class="input-small"> 
 	             </td>
-	            <td> <button class="buildBtn btn" onClick="doVerb()">Verbs</button> 
+	            <td> <button class="buildBtn btn" onClick="doVerb()">Verbs</button> <button class="buildBtn btn" onClick="getVerbForms()">New</button> 
 	            </td>
 	          </tr>
 	          <tr class="ambigVerb"> 
@@ -250,10 +251,51 @@
     
     
     <script>
+    	function getVerbForms() {
+			qp("getVerbForms");
+	    	var newVerb = new VerbForms(document.getElementById("dfinTF").value);
+	    	writeNewVerbs(newVerb);
+			qp("aa");
+    	}
+    
     	function showList() {
 	    	document.getElementById("fullListTA").value = "Affirmative:\n\n" + posOutput + "\n\n" + "Negative:\n\n" + negOutput;
 	    	document.getElementById("fullList").style.display = "block";
     	}
+    	
+    	function writeNewVerbs(verb) {
+    		var myVerb = verb;
+			document.getElementById("plainPresent").innerHTML=myVerb.vPPres;
+			document.getElementById("plainPast").innerHTML=myVerb.vPPast;
+			document.getElementById("politePresent").innerHTML=myVerb.vPres;
+			document.getElementById("politePast").innerHTML=myVerb.vPast;
+			document.getElementById("plainVol").innerHTML=myVerb.vVolPlain;
+			document.getElementById("politeVol").innerHTML=myVerb.vVol;
+			document.getElementById("te").innerHTML=myVerb.vTe;
+			document.getElementById("plainPass").innerHTML=myVerb.vPassive;
+			document.getElementById("imperative").innerHTML=myVerb.vImp;
+			document.getElementById("desiderative").innerHTML=myVerb.vDesid;
+			document.getElementById("causative").innerHTML=myVerb.vCaus;
+			document.getElementById("eba").innerHTML=myVerb.vEba;
+			document.getElementById("ra").innerHTML=myVerb.vRa;
+			document.getElementById("potential").innerHTML=myVerb.vPot;
+			document.getElementById("iterative").innerHTML=myVerb.vIter;
+			document.getElementById("simultaneous").innerHTML=myVerb.vSim;
+			document.getElementById("negPlainPresent").innerHTML=myVerb.vNPPres;
+			document.getElementById("negPlainPast").innerHTML=myVerb.vNPPast;
+			document.getElementById("negPolitePresent").innerHTML=myVerb.vNPres;
+			document.getElementById("negPolitePast").innerHTML=myVerb.vNPast;
+			document.getElementById("negTe").innerHTML=myVerb.vNTe;
+			document.getElementById("negPlainPass").innerHTML=myVerb.vNPassive;
+			document.getElementById("negDesiderative").innerHTML=myVerb.vNDesid;
+			document.getElementById("negCausative").innerHTML=myVerb.vNCaus;
+			document.getElementById("negEba").innerHTML=myVerb.vNEba;
+			document.getElementById("negRa").innerHTML=myVerb.vNRa;
+			document.getElementById("negPotential").innerHTML=myVerb.vNPot;
+			document.getElementById("negIterative").innerHTML=myVerb.vNIter;		
+		}//writeVerbs
+
+    	
     </script>
     
     
