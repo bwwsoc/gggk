@@ -1,188 +1,40 @@
-	var verbKind = -1;
-	var thisVerb = "";
-	var vDicForm, vDicStem ;
-	var vTe,vVol,vVolPlain,vPast,vPres,vPPres, vPPast, vPassive, vDesid, vCaus, vEba, vRa, vPot, vIter, vSim, vImp;
-	var vNTe,vNVol,vNPast,vNPres,vNPPres, vNPPast, vNPassive, vNDesid, vNCaus, vNEba, vNRa, vNPot, vNIter, vNSim;
-	var baseV1,baseV2,baseV3,baseV4,baseV5,baseV6,baseV7;
-	var ichiDanTestR;
-	var vDicFormLen, endInd, yodanKind;
-	var string, oldString = null;
-	var verbKindvalue;
-	var posOutput = "";
-	var negOutput = "";
+	function setVbKind(vDicForm) {
 
-//////////////
-	function VerbForms(dictForm, vKind) {
-		var vDictForm = dictForm;
-		var vDictFormLen = vDictForm.length; //needed?
-		var charType = dictForm.charCodeAt(0) > 1000 ? "h" : "r";
-		if (vKind > 0) { // passed in for ambig
-			this.verbKind = vKind;
-		}
-		else {
-			this.verbKind = charType === "h" ? setVbKindH(vDictForm) : setVbKind(vDictForm);			
-		}
-		// if romaji
-		if (charType === "r") {
-		switch (this.verbKind) {
-	
-				case 0: buildVKuru(this); break;	
-				case 1: buildVSuru(this); break;	
-				case 2: buildVIchidanBase(this); break;	
-				case 3: buildVYodanBase(this); break;	
-				default: qp("unknown verb");	
-			}				
-		}
-		
-	}	
-
-//////////
-
-	function tryVerbs(el) {
-    	document.getElementById("dfinTF").value = el.innerHTML;
-    	vDicForm = el.innerHTML;
-    	doCharSetCheck();
-	}
-
-	function doVerb() {
-		clearOutputs();
-		writeVerbs();
-	    vDicForm = document.getElementById("dfinTF").value;
-		qp('charCode:' + vDicForm.charCodeAt(0));
-		doCharSetCheck();
-	}
-	
-	function doCharSetCheck() {
-		var charCode = vDicForm.charCodeAt(0);
-		if (charCode > 1000) {
-			setVerbKindH();
-
-		}
-		else setVerbKind();
-
-	}
-
-	function setVerbKind() {
-
-		vDicFormLen = vDicForm.length;
-		verbKind = -1;
-		qp("vDicForm: " + vDicForm);
+		var verbKind = -1;
 		switch (vDicForm) {
 
 			case "kuru": verbKind = 0;break;
-
 			case "suru": verbKind = 1;break;
-
 			case "chiru":
-
 			case "hairu":
-
 			case "hashiru":
-
 			case "kagiru":
-
 			case "keru":
-
 			case "mairu":
-
 			case "nigiru":
-
 			case "heru":
-
 			case "shiru":verbKind = 3; break;
-
 			case "kaeru": 
-
 			case "kiru": 
+			case "iru": verbKind = -2; break;// throw error
+			default: verbKind = useVbEnding(vDicForm);
+		}
+		return verbKind;
+	}
 
-			case "iru": verbKind = -2; askWhich(); break;
-
-			default: useEnding();
-
-		}//switch
-
-		if (verbKind >= 0) {build();}	
-
-	}//whatVerb
-
-	function useEnding() {
+	function useVbEnding(vDicForm) {
+		var verbKind;
 
 		if (vDicForm.lastIndexOf("iru") !== -1 || vDicForm.lastIndexOf("eru") !== -1) {
-
 			verbKind = 2;
-
-			qp("it's ichidan");
-
 		}
 
 		else {
 
 			verbKind = 3;
-
-			qp("it's yodan");
-
 		}
-
+		return verbKind;
 	}//useEnding
-
-
-	function build() {
-
-		qp("verbKind is " + verbKind);
-
-		switch (verbKind) {
-
-			case 0: buildKuru(); break;
-
-			case 1: buildSuru(); break;
-
-			case 2: buildIchidanBase(); break;
-
-			case 3: buildYodanBase(); break;
-
-			default: qp("unknown verb");
-
-		}//switch
-
-		writeVerbs();
-
-	}
-
-
-	function askWhich() {
-		document.getElementById("ambigVerb1").style.display = "table-row";
-		document.getElementById("ambigVerb2").style.display = "table-row";
-		switch (vDicForm) {
-
-			case "kaeru":
-
-				document.getElementById("ichidanVTF").innerHTML = "Use: Kaeru - to change";
-
-				document.getElementById("yodanVTF").innerHTML = "Use: Kaeru - to return";
-
-				break;
-
-			case "kiru":
-
-				document.getElementById("ichidanVTF").innerHTML = "Use: Kiru - to wear";
-
-				document.getElementById("yodanVTF").innerHTML = "Use: Kiru - to cut";
-
-				break;
-
-			case "iru":
-
-				document.getElementById("ichidanVTF").innerHTML = "Use: Iru - to exist";
-
-				document.getElementById("yodanVTF").innerHTML = "Use: Iru - to need";
-
-				break;
-
-			default:		
-
-		}//switch
-
-	}//askWhich
 
 	
 
