@@ -1,8 +1,30 @@
+	function VerbForms(dictForm, vKind) {
+		this.vDictForm = dictForm;
+		var charType = dictForm.charCodeAt(0) > 1000 ? "h" : "r";
+		if (vKind > 0) { // passed in for ambig
+			this.verbKind = vKind;
+		}
+		else {
+			this.verbKind = charType === "h" ? setVbKindH(this.vDictForm) : setVbKind(this.vDictForm);			
+		}
+		// if romaji
+		if (charType === "r") {
+		qp("verbKind: " + this.verbKind);
+			switch (this.verbKind) {	
+				case 0: buildVbKuru(this); break;	
+				case 1: buildVbSuru(this); break;	
+				case 2: buildVbIchidan(this); break;	
+				case 3: buildVbYodan(this); break;	
+				default: qp("unknown verb");	
+			}				
+		}
+		
+	}	
+
 	function setVbKind(vDicForm) {
 
 		var verbKind = -1;
 		switch (vDicForm) {
-
 			case "kuru": verbKind = 0;break;
 			case "suru": verbKind = 1;break;
 			case "chiru":
@@ -14,9 +36,6 @@
 			case "nigiru":
 			case "heru":
 			case "shiru":verbKind = 3; break;
-			case "kaeru": 
-			case "kiru": 
-			case "iru": verbKind = -2; break;// throw error
 			default: verbKind = useVbEnding(vDicForm);
 		}
 		return verbKind;
@@ -38,7 +57,6 @@
 		return verbKind;
 	}//useEnding
 	
-
 	function buildVbIchidan(verbForm) {
 		qp("buildVbIchidan-I: " + verbForm.vDictForm);
 
@@ -62,7 +80,6 @@
 	}//buildBaseIchidan
 
 	
-
 	function buildVbYodan(verbForm) {
 		var vDicForm = verbForm.vDictForm;	
 		var vDicFormLen = vDicForm.length;
@@ -213,54 +230,51 @@
 		buildVerbForm(verbForm);
 	}//buildBaseYodan
 
-	
-
-
 	function buildVerbForm(verbForm) {
 
-			verbForm.vPPres = verbForm.vDictForm;
-			verbForm.vPPast = verbForm.baseV7;
-			verbForm.vPres = verbForm.baseV2 + "masu";
-			verbForm.vPast = verbForm.baseV2 + "mashita";
-			verbForm.vVol = verbForm.baseV2 + "mashoo";
-			verbForm.vTe = verbForm.baseV6;
-			verbForm.vDesid = verbForm.baseV2 + "tai";
-			verbForm.vEba = verbForm.baseV4 + "ba";
-			verbForm.vRa = verbForm.baseV7 + "ra";
-			verbForm.vIter = verbForm.baseV7 + "ri";
-			verbForm.vSim = verbForm.baseV2 + "nagara";
-			verbForm.vNPPres = verbForm.baseV1 + "nai";
-			verbForm.vNPPast = verbForm.baseV1 + "nakatta";
-			verbForm.vNPres = verbForm.baseV2 + "masen";
-			verbForm.vNPast = verbForm.baseV2 + "masen deshita";
-			verbForm.vNTe = verbForm.baseV1 + "nakute";
-			verbForm.vNDesid = verbForm.baseV2 + "taku nai";
-			verbForm.vNEba = verbForm.baseV1 + "nakereba";
-			verbForm.vNRa = verbForm.baseV1 + "nakattara";
-			verbForm.vNIter = verbForm.baseV1 + "nakattari";
+		verbForm.vPPres = verbForm.vDictForm;
+		verbForm.vPPast = verbForm.baseV7;
+		verbForm.vPres = verbForm.baseV2 + "masu";
+		verbForm.vPast = verbForm.baseV2 + "mashita";
+		verbForm.vVol = verbForm.baseV2 + "mashoo";
+		verbForm.vTe = verbForm.baseV6;
+		verbForm.vDesid = verbForm.baseV2 + "tai";
+		verbForm.vEba = verbForm.baseV4 + "ba";
+		verbForm.vRa = verbForm.baseV7 + "ra";
+		verbForm.vIter = verbForm.baseV7 + "ri";
+		verbForm.vSim = verbForm.baseV2 + "nagara";
+		verbForm.vNPPres = verbForm.baseV1 + "nai";
+		verbForm.vNPPast = verbForm.baseV1 + "nakatta";
+		verbForm.vNPres = verbForm.baseV2 + "masen";
+		verbForm.vNPast = verbForm.baseV2 + "masen deshita";
+		verbForm.vNTe = verbForm.baseV1 + "nakute";
+		verbForm.vNDesid = verbForm.baseV2 + "taku nai";
+		verbForm.vNEba = verbForm.baseV1 + "nakereba";
+		verbForm.vNRa = verbForm.baseV1 + "nakattara";
+		verbForm.vNIter = verbForm.baseV1 + "nakattari";
 
-			if (verbKind === 2) {
-				verbForm.vPassive = verbForm.baseV1 + "rareru";
-				verbForm.vCaus = verbForm.baseV1 + "saseru";
-				verbForm.vPot = verbForm.baseV1 + "rareru";
-				verbForm.vNPassive = verbForm.baseV1 + "rarenai";
-				verbForm.vNCaus = verbForm.baseV1 + "sasenai";
-				verbForm.vImp = verbForm.baseV8 + "o";
-				verbForm.vVolPlain = verbForm.baseV2 + "yoo";				
-				verbForm.vNPot = verbForm.baseV1 + "rarenai";
-			}//ichicdan
-				
-			else {
+		if (verbKind === 2) {
+			verbForm.vPassive = verbForm.baseV1 + "rareru";
+			verbForm.vCaus = verbForm.baseV1 + "saseru";
+			verbForm.vPot = verbForm.baseV1 + "rareru";
+			verbForm.vNPassive = verbForm.baseV1 + "rarenai";
+			verbForm.vNCaus = verbForm.baseV1 + "sasenai";
+			verbForm.vImp = verbForm.baseV8 + "o";
+			verbForm.vVolPlain = verbForm.baseV2 + "yoo";				
+			verbForm.vNPot = verbForm.baseV1 + "rarenai";
+		}//ichicdan
+			
+		else {
 
-				verbForm.vPassive = verbForm.baseV1 + "reru";
-				verbForm.vCaus = verbForm.baseV1 + "seru";
-				verbForm.vPot = verbForm.baseV4 + "ru";
-				verbForm.vNPassive = verbForm.baseV1 + "renai";
-				verbForm.vNCaus = verbForm.baseV1 + "senai";
-				verbForm.vNPot = verbForm.baseV4 + "nai";
-				verbForm.vImp = verbForm.baseV8 + "e";
-				verbForm.vVolPlain = verbForm.baseV8 + "oo";
-			}//yodan
+			verbForm.vPassive = verbForm.baseV1 + "reru";
+			verbForm.vCaus = verbForm.baseV1 + "seru";
+			verbForm.vPot = verbForm.baseV4 + "ru";
+			verbForm.vNPassive = verbForm.baseV1 + "renai";
+			verbForm.vNCaus = verbForm.baseV1 + "senai";
+			verbForm.vNPot = verbForm.baseV4 + "nai";
+			verbForm.vImp = verbForm.baseV8 + "e";
+			verbForm.vVolPlain = verbForm.baseV8 + "oo";
+		}//yodan
 
 	}//buildverb
 
@@ -298,8 +312,6 @@
 
 	}//buildKuru
 
-
-
 	function buildVbSuru(verbForm) {
 
 		verbForm.vPPres = "suru";
@@ -330,72 +342,7 @@
 		verbForm.vNRa = "shinakattara";
 		verbForm.vNPot = "(dekinai)";
 
-
-
 	}//buildSuru
 
 
-
-	function fullOutput() {
-		posOutput = "Plain Present: " + vPPres + "\nPlan Past: " + vPPast + "\nPolite Present: " + vPres + "\nPolite Past: " + vPast + "\nVolitional (plain): " + vVolPlain + "\nVolitional (polite): " + vVol + "\nTe-form/gerund: " + vTe + "\nPassive (plain): " + vPassive + "\nImperative: " + vImp + "\nDesidearative: " + vDesid + "\nCausative: " + vCaus + "\nConditional -eba: " + vEba + "\nConditional -ra: " + vRa + "\nPotential (plain): " + vPot + "\nIterative: " + vIter + "\nSimultaneous: " + vSim;
-		negOutput = "Plain Present: " + vNPPres + "\nPlan Past: " + vNPPast + "\nPolite Present: " + vNPres + "\nPolite Past: " + vNPast + "\nTe-form/gerund: " + vNTe + "\nPassive (plain): " + vNPassive + "\nDesidearative: " + vNDesid + "\nCausative: " + vNCaus + "\nConditional -eba: " + vNEba + "\nConditional -ra: " + vNRa + "\nPotential (plain): " + vNPot + "\nIterative: " + vNIter;
-	
-	}//fullOutput
-
-function clearOutputs() {
-		vPPres = "";
-
-		vPPast = "";
-
-		vPres = "";
-
-		vPast = "";
-
-		vVol = "";
-
-		vVolPlain = "";
-
-		vTe = "";
-
-		vPassive = "";
-
-		vDesid = "";
-
-		vCaus = "";
-
-		vEba = "";
-
-		vRa = "";
-
-		vPot = "";
-
-		vIter = "";
-
-		vSim = "";
-
-		vImp = "";
-
-		vNPPres = "";
-
-		vNPPast = "";
-
-		vNPres = "";
-
-		vNPast = "";
-
-		vNTe = "";
-
-		vNPassive = "";
-
-		vNDesid = "";
-
-		vNCaus = "";
-
-		vNEba = "";
-
-		vNRa = "";
-
-		vNPot = "";
-
-}
 

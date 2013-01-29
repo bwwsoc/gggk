@@ -184,7 +184,6 @@
 	}//askWhich
 
 	
-
 	function setWhich(verbKindValue) {
 
 		verbKind = parseInt(verbKindValue);
@@ -201,6 +200,7 @@
 	}//setWhich
 
 	
+
 
 	
 
