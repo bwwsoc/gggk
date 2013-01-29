@@ -1,7 +1,6 @@
 <% layout('layout') -%>
-<% script('javascripts/verbs.js') -%>
-<% script('javascripts/verbs-h.js') -%>
 <% script('javascripts/verbForms.js') -%>
+<% script('javascripts/verbFormsH.js') -%>
 
 	<section class="mainContent">
 	    <div class="featureHeading">
@@ -40,7 +39,8 @@
 	            <td><span>Dictionary Form:</span>
 	             <input id="dfinTF" type="text" value="" name="dfinTF" class="input-small"> 
 	             </td>
-	            <td> <button class="buildBtn btn" onClick="doVerb()">Verbs</button> <button class="buildBtn btn" onClick="getVerbForms()">New</button> 
+	            <td> 
+	            	<button id="verbFormsBtn" class="buildBtn btn" onClick="getVerbForms()">Verbs</button>
 	            </td>
 	          </tr>
 	          <tr class="ambigVerb"> 
@@ -251,16 +251,23 @@
     
     
     <script>
+
+	function tryVerbs(el) {
+    	document.getElementById("dfinTF").value = el.innerHTML;
+    	document.getElementById("verbFormsBtn").click();
+	}
+
     	function getVerbForms() {
 			qp("getVerbForms");
 	    	var newVerb = new VerbForms(document.getElementById("dfinTF").value);
 	    	writeNewVerbs(newVerb);
+	    	document.getElementById("fullListTA").value = "Affirmative:\n\n" + fullPosOutput(newVerb) + "\n\n" + "Negative:\n\n" + fullNegOutput(newVerb);
 			qp("aa");
     	}
     
     	function showList() {
-	    	document.getElementById("fullListTA").value = "Affirmative:\n\n" + posOutput + "\n\n" + "Negative:\n\n" + negOutput;
 	    	document.getElementById("fullList").style.display = "block";
+	    	//document.getElementById("fullList").style.height = "auto";
     	}
     	
     	function writeNewVerbs(verb) {
@@ -294,8 +301,19 @@
 			document.getElementById("negPotential").innerHTML=myVerb.vNPot;
 			document.getElementById("negIterative").innerHTML=myVerb.vNIter;		
 		}//writeVerbs
+		
+ 	function fullPosOutput(verbForm) {
+		var posOutput = "Plain Present: " + verbForm.vPPres + "\nPlan Past: " + verbForm.vPPast + "\nPolite Present: " + verbForm.vPres + "\nPolite Past: " + verbForm.vPast + "\nVolitional (plain): " + verbForm.vVolPlain + "\nVolitional (polite): " + verbForm.vVol + "\nTe-form/gerund: " + verbForm.vTe + "\nPassive (plain): " + verbForm.vPassive + "\nImperative: " + verbForm.vImp + "\nDesidearative: " + verbForm.vDesid + "\nCausative: " + verbForm.vCaus + "\nConditional -eba: " + verbForm.vEba + "\nConditional -ra: " + verbForm.vRa + "\nPotential (plain): " + verbForm.vPot + "\nIterative: " + verbForm.vIter + "\nSimultaneous: " + verbForm.vSim;
+		return posOutput;
+	}//fullOutput
+	
+ 	function fullNegOutput(verbForm) {
+		negOutput = "Plain Present: " + verbForm.vNPPres + "\nPlan Past: " + verbForm.vNPPast + "\nPolite Present: " + verbForm.vNPres + "\nPolite Past: " + verbForm.vNPast + "\nTe-form/gerund: " + verbForm.vNTe + "\nPassive (plain): " + verbForm.vNPassive + "\nDesidearative: " + verbForm.vNDesid + "\nCausative: " + verbForm.vNCaus + "\nConditional -eba: " + verbForm.vNEba + "\nConditional -ra: " + verbForm.vNRa + "\nPotential (plain): " + verbForm.vNPot + "\nIterative: " + verbForm.vNIter;
+	return negOutput;
+	}//fullOutput
 
-    	
+
+   	
     </script>
     
     

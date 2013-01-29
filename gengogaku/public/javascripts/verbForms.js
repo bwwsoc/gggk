@@ -7,15 +7,24 @@
 		else {
 			this.verbKind = charType === "h" ? setVbKindH(this.vDictForm) : setVbKind(this.vDictForm);			
 		}
+		qp("verbK: " + this.verbKind);
 		// if romaji
 		if (charType === "r") {
-		qp("verbKind: " + this.verbKind);
 			switch (this.verbKind) {	
 				case 0: buildVbKuru(this); break;	
 				case 1: buildVbSuru(this); break;	
 				case 2: buildVbIchidan(this); break;	
 				case 3: buildVbYodan(this); break;	
 				default: qp("unknown verb");	
+			}				
+		}
+		else if (charType === "h") {
+			switch (this.verbKind) {	
+				case 0: buildVbKuruH(this); break;	
+				case 1: buildVbSuruH(this); break;	
+				case 2: buildVbIchidanH(this); break;	
+				case 3: buildVbYodanH(this); break;	
+				default: qp("unknown verb h");	
 			}				
 		}
 		
@@ -253,7 +262,7 @@
 		verbForm.vNRa = verbForm.baseV1 + "nakattara";
 		verbForm.vNIter = verbForm.baseV1 + "nakattari";
 
-		if (verbKind === 2) {
+		if (verbForm.verbKind === 2) {
 			verbForm.vPassive = verbForm.baseV1 + "rareru";
 			verbForm.vCaus = verbForm.baseV1 + "saseru";
 			verbForm.vPot = verbForm.baseV1 + "rareru";

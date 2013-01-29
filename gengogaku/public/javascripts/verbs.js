@@ -12,29 +12,6 @@
 	var negOutput = "";
 
 //////////////
-	function VerbForms(dictForm, vKind) {
-		this.vDictForm = dictForm;
-		var charType = dictForm.charCodeAt(0) > 1000 ? "h" : "r";
-		if (vKind > 0) { // passed in for ambig
-			this.verbKind = vKind;
-		}
-		else {
-			this.verbKind = charType === "h" ? setVbKindH(this.vDictForm) : setVbKind(this.vDictForm);			
-		}
-		// if romaji
-		if (charType === "r") {
-		qp("verbKind: " + this.verbKind);
-			switch (this.verbKind) {	
-				case 0: buildVbKuru(this); break;	
-				case 1: buildVbSuru(this); break;	
-				case 2: buildVbIchidan(this); break;	
-				case 3: buildVbYodan(this); break;	
-				default: qp("unknown verb");	
-			}				
-		}
-		
-	}	
-
 //////////
 
 	function tryVerbs(el) {
