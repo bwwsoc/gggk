@@ -17,6 +17,9 @@ app.get('/verbBuilder', routes.verbBuilder);
 app.get('/kana', routes.kana);
 app.get('/numbers', routes.numbers);
 app.get('/dateAndTime', routes.dateAndTime);
+app.get('/api/', api.info);
+app.get('/api/help', api.info);
+app.get('/api/info', api.info);
 app.get('/api/:name', api.kj);
 
 app.listen(process.env.VCAP_APP_PORT || 3000);
