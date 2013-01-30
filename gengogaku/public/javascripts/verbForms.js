@@ -1,5 +1,6 @@
 	function VerbForms(dictForm, vKind) {
 		this.vDictForm = dictForm;
+		this.jsonData;
 		var charType = dictForm.charCodeAt(0) > 1000 ? "h" : "r";
 		if (vKind > 0) { // passed in for ambig
 			this.verbKind = vKind;
@@ -27,7 +28,10 @@
 				default: qp("unknown verb h");	
 			}				
 		}
-		
+		this.jsonData =  buildJson(this);
+		getPPres = function() {
+			return this.vPPres;
+		}
 	}	
 
 	function setVbKind(vDicForm) {
@@ -286,9 +290,7 @@
 		}//yodan
 
 	}//buildverb
-
 	
-
 	function buildVbKuru(verbForm) {
 
 		verbForm.vPPres = "kuru";
@@ -318,6 +320,7 @@
 		verbForm.vNEba = "konakereba";
 		verbForm.vNRa = "konakattara";
 		verbForm.vNPot = "korareru";
+		verbForm.vNIter = "n/a";
 
 	}//buildKuru
 
@@ -350,8 +353,54 @@
 		verbForm.vNEba = "shinakereba";
 		verbForm.vNRa = "shinakattara";
 		verbForm.vNPot = "(dekinai)";
+		verbForm.vNIter = "n/a";
 
 	}//buildSuru
+	
+	function buildJson(verbForm) {
+		var data={
+			"affirmative":
+		        {
+		            "plainPresent" : verbForm.vPPres,
+		            "plainPast" : verbForm.vPPast,
+		            "politePresent" : verbForm.vPres,
+		            "politePast" : verbForm.vPast,
+		            "plainVolitional" : verbForm.vVolPlain,
+		            "politeVolitional" : verbForm.vVol,
+		            "teForm" : verbForm.vTe,
+		            "passive" : verbForm.vPassive,
+		            "desiderative" : verbForm.vDesid,
+		            "causative" : verbForm.vCaus,
+		            "conditionalEba" : verbForm.vEba,
+		            "conditionalRa" : verbForm.vRa,
+		            "potential" : verbForm.vPot,
+		            "iterative" : verbForm.vIter,
+		            "simultaneous" : verbForm.vSim,
+		            "imperative" : verbForm.vImp
+		        }
+		,
+			"negative":
+		        {
+		            "plainPresent" : verbForm.vNPPres,
+		            "plainPast" : verbForm.vNPPast,
+		            "politePresent" : verbForm.vNPres,
+		            "politePast" : verbForm.vNPast,
+		            "teForm" : verbForm.vNTe,
+		            "passive" : verbForm.vNPassive,
+		            "desiderative" : verbForm.vNDesid,
+		            "causative" : verbForm.vNCaus,
+		            "conditionalEba" : verbForm.vNEba,
+		            "conditionalRa" : verbForm.vNRa,
+		            "potential" : verbForm.vNPot,
+		            "iterative" : verbForm.vNIter
+		        }	
+		}
+		return data;
+	}
+
+
+
+
 
 
 

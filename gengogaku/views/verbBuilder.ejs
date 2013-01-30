@@ -93,8 +93,7 @@
 	          <tr> 
 	            <td class="builder-labels">TE-form/gerund</td>
 	            <td id="te"> </td>
-	            <td id="negTe">  </td>
-	          
+	            <td id="negTe">  </td>	          
 	          </tr>
 	          <tr> 
 	            <td class="builder-labels">Passive (plain)</td>
@@ -251,23 +250,24 @@
     
     
     <script>
-
-	function tryVerbs(el) {
-    	document.getElementById("dfinTF").value = el.innerHTML;
-    	document.getElementById("verbFormsBtn").click();
-	}
+	    var currentVerb;
+		function tryVerbs(el) {
+	    	document.getElementById("dfinTF").value = el.innerHTML;
+	    	document.getElementById("verbFormsBtn").click();
+		}
 
     	function getVerbForms() {
 			qp("getVerbForms");
 	    	var newVerb = new VerbForms(document.getElementById("dfinTF").value);
+	    	currentVerb = newVerb;
+	    	qp("jsonData vb: " + newVerb.jsonData.affirmative.plainPast);
 	    	writeNewVerbs(newVerb);
-	    	document.getElementById("fullListTA").value = "Affirmative:\n\n" + fullPosOutput(newVerb) + "\n\n" + "Negative:\n\n" + fullNegOutput(newVerb);
-			qp("aa");
+	    	document.getElementById("fullListTA").value  =  "Affirmative:\n\n" + fullPosOutput(newVerb) + "\n\n" + "Negative:\n\n" + fullNegOutput(newVerb);
+
     	}
     
     	function showList() {
 	    	document.getElementById("fullList").style.display = "block";
-	    	//document.getElementById("fullList").style.height = "auto";
     	}
     	
     	function writeNewVerbs(verb) {
@@ -302,17 +302,18 @@
 			document.getElementById("negIterative").innerHTML=myVerb.vNIter;		
 		}//writeVerbs
 		
- 	function fullPosOutput(verbForm) {
-		var posOutput = "Plain Present: " + verbForm.vPPres + "\nPlan Past: " + verbForm.vPPast + "\nPolite Present: " + verbForm.vPres + "\nPolite Past: " + verbForm.vPast + "\nVolitional (plain): " + verbForm.vVolPlain + "\nVolitional (polite): " + verbForm.vVol + "\nTe-form/gerund: " + verbForm.vTe + "\nPassive (plain): " + verbForm.vPassive + "\nImperative: " + verbForm.vImp + "\nDesidearative: " + verbForm.vDesid + "\nCausative: " + verbForm.vCaus + "\nConditional -eba: " + verbForm.vEba + "\nConditional -ra: " + verbForm.vRa + "\nPotential (plain): " + verbForm.vPot + "\nIterative: " + verbForm.vIter + "\nSimultaneous: " + verbForm.vSim;
-		return posOutput;
-	}//fullOutput
+	 	function fullPosOutput(verbForm) {
+	 		var af = verbForm.jsonData.affirmative;
+			var posOutput = "Plain Present: " + af.plainPresent + "\nPlan Past: " + af.plainPast + "\nPolite Present: " + af.politePresent + "\nPolite Past: " + af.politePast + "\nVolitional (plain): " + af.plainVolitional + "\nVolitional (polite): " + af.politeVolitional + "\nTe-form/gerund: " + af.teForm + "\nPassive (plain): " + af.passive + "\nImperative: " + af.imperative + "\nDesidearative: " + af.desiderative + "\nCausative: " + af.causative + "\nConditional -eba: " + af.conditionalEba + "\nConditional -ra: " + af.conditionalRa + "\nPotential (plain): " + af.potential + "\nIterative: " + af.iterative + "\nSimultaneous: " + af.simultaneous;
+			return posOutput;
+		}//fullOutput
+		
+	 	function fullNegOutput(verbForm) {
+	 		var nf = verbForm.jsonData.negative;
+			var negOutput = "Plain Present: " + nf.plainPresent + "\nPlan Past: " + nf.plainPast + "\nPolite Present: " + nf.politePresent + "\nPolite Past: " + nf.politePast + "\nTe-form/gerund: " + nf.teForm + "\nPassive (plain): " + nf.passive + "\nDesidearative: " + nf.desiderative + "\nCausative: " + nf.causative + "\nConditional -eba: " + nf.conditionalEba + "\nConditional -ra: " + nf.conditionalRa + "\nPotential (plain): " + nf.potential + "\nIterative: " + nf.iterative;
+		return negOutput;
+		}//fullOutput
 	
- 	function fullNegOutput(verbForm) {
-		negOutput = "Plain Present: " + verbForm.vNPPres + "\nPlan Past: " + verbForm.vNPPast + "\nPolite Present: " + verbForm.vNPres + "\nPolite Past: " + verbForm.vNPast + "\nTe-form/gerund: " + verbForm.vNTe + "\nPassive (plain): " + verbForm.vNPassive + "\nDesidearative: " + verbForm.vNDesid + "\nCausative: " + verbForm.vNCaus + "\nConditional -eba: " + verbForm.vNEba + "\nConditional -ra: " + verbForm.vNRa + "\nPotential (plain): " + verbForm.vNPot + "\nIterative: " + verbForm.vNIter;
-	return negOutput;
-	}//fullOutput
-
-
    	
     </script>
     
