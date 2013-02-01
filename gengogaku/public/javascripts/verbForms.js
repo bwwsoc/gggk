@@ -56,8 +56,10 @@
 
 	function useVbEnding(vDicForm) {
 		qp("useVbEnding: " + vDicForm);
-		var verbKind;
-
+		var verbKind = -1;
+		if (vDicForm.charAt(vDicForm.length-1).toLowerCase() !== "u") {
+			return verbKind;
+		}
 		if (vDicForm.lastIndexOf("iru") !== -1 || vDicForm.lastIndexOf("eru") !== -1) {
 			verbKind = 2;
 		}

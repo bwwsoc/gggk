@@ -17,6 +17,8 @@ app.get('/verbBuilder', routes.verbBuilder);
 app.get('/kana', routes.kana);
 app.get('/numbers', routes.numbers);
 app.get('/dateAndTime', routes.dateAndTime);
+app.get('/how', routes.how);
+app.get('/practice', routes.practice);
 app.get('/api/', api.info);
 app.get('/api/help', api.info);
 app.get('/api/info', api.info);

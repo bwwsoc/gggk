@@ -277,6 +277,21 @@ font-weight: bold;
 	display: none;
 }
 
+/* Practice */
+
+.practiceArea {
+	border: 1px solid green;
+	overflow: hidden;
+	width: 204px;
+}
+
+.practiceBox {
+	border: 1px solid #ccc;
+	float: left;
+	height: 100px;
+	width: 100px;
+}
+
 @media screen and (max-width: 360px)  {
 	.brand {
 		display: none;

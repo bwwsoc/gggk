@@ -1,0 +1,68 @@
+<% layout('layout') -%>
+<% script('javascripts/practice.js') -%>
+
+    <section class="mainContent">
+	    <div class="featureHeading">
+          <p class="featureTitle">Practice</p>
+		  <p class="featureDescription">Practice</p>
+	    </div>
+
+
+    	<div class="featureSubcontainer">
+    		<p>
+    			Practice your hiragana recognition with a matching game.
+    		</p>
+    		<span id="score"></span>
+	    	<div class="practiceArea">
+	    		<div id="box1" class="practiceBox" onclick="checkMe('ka')">ka
+	    		</div>
+	    		<div id="box2" class="practiceBox" onclick="checkMe('ki')">き
+	    		</div>
+	    		<div id="box3" class="practiceBox" onclick="checkMe('ka')">か
+	    		</div>
+	    		<div id="box4" class="practiceBox" onclick="checkMe('ki')">ki
+	    		</div>
+
+	    	</div>
+
+    	</div>
+    	<div class="featureSubcontainer">
+    </section>
+    
+    
+    <script>
+    	var lastClick = "";
+    	var activeRound = false;
+    	var wins = 0;
+	    function checkMe(myStr) {
+		    if (activeRound !== true) {
+			    lastClick = myStr;
+			    activeRound = true;
+			    return;
+		    }
+		    else {
+			    if (lastClick === myStr) {
+				    wins++;
+				    document.getElementById("score").innerHTML = wins;
+				    alert("match!");
+				    activeRound = false;
+				    lastClick = "";
+			    }
+			    else {
+				    alert("fail!");
+				    activeRound = false;
+				    lastClick = "";
+				    
+			    }
+		    }
+	    }
+
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    

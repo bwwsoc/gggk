@@ -1,0 +1,91 @@
+<% layout('layout') -%>
+<% script('javascripts/verbForms.js') -%>
+
+    <section class="mainContent">
+	    <div class="featureHeading">
+          <p class="featureTitle">How it's done</p>
+		  <p class="featureDescription">Stepping through how it's done.</p>
+	    </div>
+
+
+    	<div class="featureSubcontainer">
+    		<p>
+    			The forms are assembled by putting together a stem, a base and an ending.
+    		</p>
+	    	<div class="howToSteps">
+	    		<ol>
+	    			<li>Determine what kind of verb: irregular, ichidan, yodan.
+	    				<ul>
+	    					<li>Is it one of the irregular verbs suru or kuru?
+	    					<li>Is it a yodan verb that looks like an ichidan?
+	    						<ul>
+	    							<li>chiru, hairu, hashiru, kagiru, keru, mairu, nagiru, heru, shiru
+	    						</ul>
+	    				</ul>
+	    			<li>Determine the stem by dropping last 1,2 or 3 letters.
+	    			<li>Build the bases.
+	    			<li>Put stem, base and ending together for each form.
+	    		
+	    		</ol>
+
+	    	</div>
+
+    	</div>
+    	<div class="featureSubcontainer">
+		    <div class="howToInAction">
+		    	<p>
+		    		To see the process in action provide the dictionary form of a verb and hit Go!
+		    	</p>
+		    	<div>
+					<input id="howToTF" type="text" value="" class="input-small"> 
+					<button id="howToBtn" class="buildBtn btn" onClick="startHowTo()">Go!</button>		    	
+		    	</div>
+		    	<div>
+		    		<div id="howOut">
+		    		
+		    		</div>
+					<textarea id="verbFormProcess" cols="32" rows="42"></textarea>	        		    	
+		    	</div>
+		    </div>
+    	</div> 
+    </section>
+    
+    
+    <script>
+    	function startHowTo() {
+	    	var taEl = document.getElementById("verbFormProcess");
+	    	var outEl = document.getElementById("howOut");
+	    	var procOut = "Determining verb kind...\n";
+	    	var nl1, nl2, nl3, nl4, nl5, nl6;
+	    	taEl.value = "";
+		    setTimeout(function() {updateOut(procOut)}, 1000);
+	    	var dictForm = document.getElementById("howToTF").value;
+	    	nl1 = dictForm + " appears to be...\n";
+		    setTimeout(function() {taEl.value = taEl.value + nl1}, 2000);
+		    nl2 = getVerbKind(dictForm) + "\n";
+		    setTimeout(function() {taEl.value = taEl.value + nl2}, 3000)
+	    	
+    	}
+    	function getVerbKind(dictForm) {
+	    	switch (setVbKind(dictForm)) {
+			 	case 0: return "the irregular verb kuru";
+			 	case 1: return "the irregular verb suru";
+			 	case 2: return "ichidan";
+			 	case 3: return "yodan";
+			 	default: return "unkown";
+				 
+			 }    	
+		 }
+		 function updateOut(newLine) {
+			 document.getElementById("verbFormProcess").value = document.getElementById("verbFormProcess").value + newLine;
+
+		 }
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    

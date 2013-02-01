@@ -61,7 +61,7 @@ function setVbKind(vDicForm) {
 }
 
 function useVbEnding(vDicForm) {
-	var verbKind;
+	var verbKind = -1;
 
 	if (vDicForm.lastIndexOf("iru") !== -1 || vDicForm.lastIndexOf("eru") !== -1) {
 		verbKind = 2;

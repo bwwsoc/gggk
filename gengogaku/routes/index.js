@@ -27,10 +27,11 @@ exports.kana = function(req, res){
   res.render('kana', { title: 'Kana converter' });
 };
 
-exports.jsverblisting = function(req, res){
-  res.render('jsverblisting', { title: 'Verb List' });
+exports.how = function(req, res){
+  res.render('how', { title: "How it's done" });
 };
 
-exports.kj = function(req, res){
-	res.json({ user: 'tobi' })
+exports.practice = function(req, res){
+  res.render('practice', { title: "Practice" });
 };
+
