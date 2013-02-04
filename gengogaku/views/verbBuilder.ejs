@@ -321,10 +321,10 @@
 
     	function getVerbFormJson() {
 	    	if (currentVerb === "") return alert('Please provide a verb');
-    		var urlReq = "http://localhost:3000/api/" + currentVerb.vDictForm;
+    		var urlReq = "http://www.gengogaku.org/api/" + currentVerb.vDictForm;
 	    	var xhReq = new XMLHttpRequest();
 			 xhReq.open("GET", urlReq, false);
-			 xhReq.send(null);
+			 xhReq.send();
 			 var serverResponse = xhReq.responseText;
 			 document.getElementById("fullListTA").value  = serverResponse;
 	    	document.getElementById("fullList").style.display = "block";
