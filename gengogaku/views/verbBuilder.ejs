@@ -261,9 +261,10 @@
 		}
 
     	function getVerbForms() {
-	    	var newVerb = new VerbForms(document.getElementById("dfinTF").value);
+    		var dfin = document.getElementById("dfinTF").value;
+	    	if (dfin === "" || dfin === null) return alert('Please provide a verb');
+	    	var newVerb = new VerbForms(dfin);
 	    	currentVerb = newVerb;
-	    	qp("jsonData vb: " + newVerb.jsonData.affirmative.plainPast);
 	    	writeNewVerbs(newVerb);
 	    	document.getElementById("fullListControls").style.display = "block";
 
