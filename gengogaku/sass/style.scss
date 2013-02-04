@@ -91,6 +91,7 @@ section {
 
 .featureSubcontainer {
 	margin: 10px 0;
+	width: auto;
 }
 
 .gggk-table {
@@ -122,7 +123,7 @@ section {
 }
 
 .tryIt {
-	border: 1px solid #333;
+	border: 1px solid #a5c5af;
 	clear: both;
 	margin: 10px 0;
 	overflow: hidden;
@@ -185,6 +186,11 @@ section {
 	display: none;
 }
 
+.fullListControls {
+	display: none;
+}
+
+
 .sampleBtn {
 	background-color: white;
 	border-bottom: 1px solid #eee;
@@ -244,26 +250,35 @@ font-weight: bold;
 /* Kana converter */
 
 .conversionDisplay {
-	border: 1px solid #eee;
+	border: 1px solid #aaa;
 	margin: 10px 0px 0px 0px;
-	width: 160px;
+	width: 300px;
 }
 
-.conversionDisplay div {
-	width: 160px;
+.fullKanaList {
+	display: none;
 }
 
-.conversionDisplay span {
-	font-size: 12px;
-	padding: 4px 5px;
-	text-align: left;
+.fullKanaListTA {
+	font-size: 15px;
 }
+
 
 .kExample {
 	font-size: 16px;
 }
 
-.outputLabel {
+.listAllKana {
+	border: 1px solid #aaa;
+	padding: 5px;
+	width: 310px;
+	
+}
+
+.outputLabel, valueDisplay{
+	font-size: 12px;
+	padding: 4px 5px;
+	text-align: left;
 	display: inline-block;
 	width: 85px;
 }
@@ -279,18 +294,26 @@ font-weight: bold;
 
 /* Practice */
 
+
 .practiceArea {
-	border: 1px solid green;
 	overflow: hidden;
-	width: 204px;
+	width: 300px;
 }
 
 .practiceBox {
 	border: 1px solid #ccc;
 	float: left;
-	height: 100px;
-	width: 100px;
+	font-size: 32px;
+	height: 70px;
+	//padding-top: 10px;
+	text-align: center;
+	width: 70px;
 }
+
+.solved {
+	background-color:#a59864
+}
+
 
 @media screen and (max-width: 360px)  {
 	.brand {

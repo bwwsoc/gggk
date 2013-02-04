@@ -141,7 +141,7 @@ function getRandomKana() {
 	}
 	console.log("tmpKana: " + tmpKana);
 	console.log("tmpKana.u: " + kDict[tmpKana].uValue);
-	return kDict[tmpKana].uValue;
+	return kDict[tmpKana];
 }
 
 function getKanaForInt(kanaIntValue) {

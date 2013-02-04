@@ -4,7 +4,7 @@
     <section class="mainContent">
 	    <div class="featureHeading">
           <p class="featureTitle">Kana converter</p>
-		  <p class="featureDescription">This feature provides kana script information. Acceptable inputs are kana script character, integer value, hex/unicode value or romaji literal.</p>
+		  <p class="featureDescription">This feature provides kana script information. </p>
 	    </div>
  	    <div class="featureSubcontainer">
     	<div class="tryIt">
@@ -14,43 +14,51 @@
 	    			<button class="kExample" onClick="tryKana(this)">ぱ</button>
     			</div>
     			<div class="tryIt-example">
-	    			<button class="" onClick="tryKana(this)">ka</button>
+	    			<button class="btn" onClick="tryKana(this)">ka</button>
     			</div>
     			<div class="tryIt-example">
-	    			<button class="" onClick="tryKana(this)">306C</button>
+	    			<button class="btn" onClick="tryKana(this)">306C</button>
     			</div>
     			<div class="tryIt-example">
-	    			<button class="" onClick="tryKana(this)">12415</button>
+	    			<button class="btn" onClick="tryKana(this)">12415</button>
     			</div>
     			<div class="tryIt-example">
 	    			<button class="kExample" onClick="tryKana(this)">き</button>
     			</div>
     			<div class="tryIt-example">
-	    			<button class="" onClick="tryKana(this)">mu</button>
+	    			<button class="btn" onClick="tryKana(this)">mu</button>
     			</div>
     			<div class="tryIt-example">
-	    			<button class="" onClick="tryKana(this)">308D</button>
+	    			<button class="btn" onClick="tryKana(this)">308D</button>
     			</div>
     			<div class="tryIt-example">
-	          <button class="" onClick="tryRandom()">Random</button>
+	          <button class="btn" onClick="tryRandom()">Random</button>
     			</div>
     		</div>
     	</div>
     	
-          <div>
-          		<input type="text" id="conversionInput">
-          		<button id="kConvertBtn" class="buildBtn" onClick="doKanaConversion()">Kana</button>
-          </div>
  	    </div>
 	    <div class="featureSubcontainer">
 	          <div class="conversionDisplay">
+				<div>
+					<p>Get specific kana information. Valid inputs are kana script character, integer value, hex/unicode value or romaji literal.</p>
+					<input type="text" id="conversionInput">
+					<button id="kConvertBtn" class="btn buildBtn" onClick="doKanaConversion()">Kana</button>
+				</div>
 				<div><span class="outputLabel">Pronunciation:</span><span class="valueDisplay" id="pronunciation"></span></div>
 				<div><span class="outputLabel">Unicode value:</span><span class="valueDisplay" id="unicodeValue"></span></div>
 				<div><span class="outputLabel">Integer value:</span><span class="valueDisplay" id="intValue"></span></div>
 				<div id="scriptDisplay" class="scriptDisplay"></div>
 	          </div>
 	    </div>  
-	    	
+	    <div class="listAllKana">
+			<p>List all hiragana as:</p>
+			<button id="" class="btn buildBtn" onClick="showAll()">text</button>
+			<button id="" class="btn buildBtn" onClick="showAllJson()">Json</button>
+			<div id="fullKanaList" class="fullKanaList" name="fullList">
+			<textarea id="fullKanaListTA" class="fullKanaListTA" cols="25" rows="42"></textarea>	        
+			</div>
+	    </div>        
     </section>
 
     <script>
@@ -81,7 +89,53 @@
 
     	}
     	function tryRandom() {
-	    	document.getElementById("conversionInput").value = getRandomKana();
+	    	document.getElementById("conversionInput").value = getRandomKana().uValue;
 	    	document.getElementById("kConvertBtn").click();
     	}
+    	
+    	function showAll() {
+	    	var kAllOutput = "";
+	    	for (var kana in kDict) {
+			    if (kDict.hasOwnProperty(kana)) {
+			        kAllOutput += kDict[kana].name + " = " + kDict[kana].uValue + "\n";
+			    }
+			} 
+	    	document.getElementById("fullKanaList").style.display = "block";
+			document.getElementById("fullKanaListTA").value = kAllOutput;
+    	}
+
+    	function showAllJson() {
+	    	var kAllOutputJson = "";
+	    	for (var kana in kDict) {
+			    if (kDict.hasOwnProperty(kana)) {
+			        kAllOutputJson += "{\n " + kDict[kana].name + " : {\n  name : " + kDict[kana].name + ",\n  intValue : " +
+			        kDict[kana].intValue + ",\n  unicode : " + kDict[kana].uValue + "\n }\n},\n";
+			    }
+			} 
+			kAllOutputJson = kAllOutputJson.substr(0, kAllOutputJson.length - 2);
+	    	document.getElementById("fullKanaList").style.display = "block";
+			document.getElementById("fullKanaListTA").value = kAllOutputJson;
+    	}
+
+
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

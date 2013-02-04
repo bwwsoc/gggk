@@ -141,12 +141,16 @@
 	            <td id="simultaneous">   </td>
 	            <td id="negSimultaneous"> n/a   </td>
 	          </tr>
-	          <tr> 
-	            <td colspan="3"><a href="#fullList" onClick="showList()">View results in single text area for easy copy and paste.</a></td>
-	          </tr>	
+
 	        </table>
+	        <div id="fullListControls" class="xfullListControls" name="fullList">
+	        	<p>List all verb forms as:</p>
+				<button id="" class="btn buildBtn" onClick="showList()">text</button>
+				<button id="" class="btn buildBtn" onClick="getVerbFormJson()">Json</button>
+				<p><a href="/api/" target="_blank">Learn more about the JSON api (new window</a>)</p>
+	        </div>	        
 	        <div id="fullList" class="fullList" name="fullList">
-              <textarea id="fullListTA" cols="32" rows="42"></textarea>	        
+              <textarea id="fullListTA" cols="40" rows="40"></textarea>	        
 	        </div>	        
     	</div>	
     	<div class="featureSubcontainer">
@@ -250,23 +254,24 @@
     
     
     <script>
-	    var currentVerb;
+	    var currentVerb = "";
 		function tryVerbs(el) {
 	    	document.getElementById("dfinTF").value = el.innerHTML;
 	    	document.getElementById("verbFormsBtn").click();
 		}
 
     	function getVerbForms() {
-			qp("getVerbForms");
 	    	var newVerb = new VerbForms(document.getElementById("dfinTF").value);
 	    	currentVerb = newVerb;
 	    	qp("jsonData vb: " + newVerb.jsonData.affirmative.plainPast);
 	    	writeNewVerbs(newVerb);
-	    	document.getElementById("fullListTA").value  =  "Affirmative:\n\n" + fullPosOutput(newVerb) + "\n\n" + "Negative:\n\n" + fullNegOutput(newVerb);
+	    	document.getElementById("fullListControls").style.display = "block";
 
     	}
     
     	function showList() {
+	    	if (currentVerb === "") return alert('Please provide a verb');
+	    	document.getElementById("fullListTA").value  =  "Affirmative:\n\n" + fullPosOutput(currentVerb) + "\n\n" + "Negative:\n\n" + fullNegOutput(currentVerb);
 	    	document.getElementById("fullList").style.display = "block";
     	}
     	
@@ -313,6 +318,17 @@
 			var negOutput = "Plain Present: " + nf.plainPresent + "\nPlan Past: " + nf.plainPast + "\nPolite Present: " + nf.politePresent + "\nPolite Past: " + nf.politePast + "\nTe-form/gerund: " + nf.teForm + "\nPassive (plain): " + nf.passive + "\nDesidearative: " + nf.desiderative + "\nCausative: " + nf.causative + "\nConditional -eba: " + nf.conditionalEba + "\nConditional -ra: " + nf.conditionalRa + "\nPotential (plain): " + nf.potential + "\nIterative: " + nf.iterative;
 		return negOutput;
 		}//fullOutput
+
+    	function getVerbFormJson() {
+	    	if (currentVerb === "") return alert('Please provide a verb');
+    		var urlReq = "http://localhost:3000/api/" + currentVerb.vDictForm;
+	    	var xhReq = new XMLHttpRequest();
+			 xhReq.open("GET", urlReq, false);
+			 xhReq.send(null);
+			 var serverResponse = xhReq.responseText;
+			 document.getElementById("fullListTA").value  = serverResponse;
+	    	document.getElementById("fullList").style.display = "block";
+		 }
 	
    	
     </script>

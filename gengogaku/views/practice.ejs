@@ -1,28 +1,53 @@
 <% layout('layout') -%>
 <% script('javascripts/practice.js') -%>
+<% script('javascripts/kana.js') -%>
+<% block('onload', 'onLoad="practiceSetup()"') -%>
 
     <section class="mainContent">
 	    <div class="featureHeading">
           <p class="featureTitle">Practice</p>
-		  <p class="featureDescription">Practice</p>
+		  <p class="featureDescription">Practice your hiragana recognition with a matching game.</p>
 	    </div>
 
 
     	<div class="featureSubcontainer">
     		<p>
-    			Practice your hiragana recognition with a matching game.
+    			Match the characters with as few mistakes as possible.
     		</p>
-    		<span id="score"></span>
+    		Correct: <span id="hits"></span> Incorrect: <span id="misses"></span>
 	    	<div class="practiceArea">
-	    		<div id="box1" class="practiceBox" onclick="checkMe('ka')">ka
+	    		<div id="box1" class="practiceBox" onclick="checkMe(this)">
 	    		</div>
-	    		<div id="box2" class="practiceBox" onclick="checkMe('ki')">き
+	    		<div id="box2" class="practiceBox" onclick="checkMe(this)">
 	    		</div>
-	    		<div id="box3" class="practiceBox" onclick="checkMe('ka')">か
+	    		<div id="box3" class="practiceBox" onclick="checkMe(this)">
 	    		</div>
-	    		<div id="box4" class="practiceBox" onclick="checkMe('ki')">ki
+	    		<div id="box4" class="practiceBox" onclick="checkMe(this)">
 	    		</div>
-
+	    		<div id="box5" class="practiceBox" onclick="checkMe(this)">
+	    		</div>
+	    		<div id="box6" class="practiceBox" onclick="checkMe(this)">
+	    		</div>
+	    		<div id="box7" class="practiceBox" onclick="checkMe(this)">
+	    		</div>
+	    		<div id="box8" class="practiceBox" onclick="checkMe(this)">
+	    		</div>
+	    		<div id="box9" class="practiceBox" onclick="checkMe(this)">
+	    		</div>
+	    		<div id="box10" class="practiceBox" onclick="checkMe(this)">
+	    		</div>
+	    		<div id="box11" class="practiceBox" onclick="checkMe(this)">
+	    		</div>
+	    		<div id="box12" class="practiceBox" onclick="checkMe(this)">
+	    		</div>
+	    		<div id="box13" class="practiceBox" onclick="checkMe(this)">
+	    		</div>
+	    		<div id="box14" class="practiceBox" onclick="checkMe(this)">
+	    		</div>
+	    		<div id="box15" class="practiceBox" onclick="checkMe(this)">
+	    		</div>
+	    		<div id="box16" class="practiceBox" onclick="checkMe(this)">
+	    		</div>
 	    	</div>
 
     	</div>
@@ -31,38 +56,122 @@
     
     
     <script>
-    	var lastClick = "";
+    	
+    	function practiceSetup () {
+	    	var kanaSet = buildRandomKanaSet();
+	    	var boxes = getBoxesArray();
+	    	var tmpEl;
+	    	var tmpIndex = Math.floor(Math.random() * boxes.length);
+	    		console.log("tmpIndex: " + tmpIndex);
+	    	//console.log("ks1: " + kanaSet[1].name);
+	    	for (var i = 0; i < 8; i++) {
+	    		tmpEl = boxes.splice(tmpIndex, 1)[0];
+	    		//console.log("tmpEl: " + tmpEl.innerHTML);
+		    	tmpEl.innerHTML = kanaSet[i].name;
+		    	tmpEl.setAttribute("data-kId", kanaSet[i].intValue);
+		    	tmpIndex = Math.floor(Math.random() * boxes.length);
+	    	}
+	    	for (var j = 0; j < 8; j++) {
+	    		tmpEl = boxes.splice(tmpIndex, 1)[0];
+		    	tmpEl.innerHTML = kanaSet[j].uValue;
+		    	tmpEl.setAttribute("data-kId", kanaSet[j].intValue);
+		    	tmpIndex = Math.floor(Math.random() * boxes.length);
+	    	}
+	    	
+	    	console.log("kId: " + document.getElementById("box8").getAttribute("data-kId"));
+    	}
+    
+	    function buildRandomKanaSet() {
+		    var kanaSet = [];
+		    var tmpKana;
+		    var uniqueKana;
+		    var setComplete = false;
+		    var tmpCounter = 0;
+		    while (kanaSet.length < 8) {
+			    tmpKana = getRandomKana();
+			    uniqueKana = true;
+			    for (var j = 0; j < kanaSet.length; j++) {
+				    if (tmpKana.name === kanaSet[j].name) {
+				    	console.log("tmpKana.name:" + tmpKana.name);
+				    	console.log("kanaSet[j].name: " + kanaSet[j].name);
+					    uniqueKana = false;
+					    break;
+				    }
+			    }
+			    if (uniqueKana === true) {
+				    kanaSet.push(tmpKana);
+			    }
+			    //setComplete = kanaSet.length === 8 ? true : false;
+		    }
+	    		console.log("aa: ");
+
+		    return kanaSet;
+	    }
+
+
+    	var lastClickEl, thisClickEl;
     	var activeRound = false;
-    	var wins = 0;
-	    function checkMe(myStr) {
+    	var hits = 0;
+    	var misses = 0;
+	    function checkMe(el) {
 		    if (activeRound !== true) {
-			    lastClick = myStr;
+			    lastClickEl = el;
 			    activeRound = true;
 			    return;
 		    }
 		    else {
-			    if (lastClick === myStr) {
-				    wins++;
-				    document.getElementById("score").innerHTML = wins;
-				    alert("match!");
+			    if (lastClickEl.getAttribute("data-kId") === el.getAttribute("data-kId")) {
+				    hits++;
+				    document.getElementById("hits").innerHTML = hits;
+				    alert("Match!");
 				    activeRound = false;
+				    lastClickEl.className += " solved";
+				    el.className += " solved";
 				    lastClick = "";
 			    }
 			    else {
-				    alert("fail!");
+				    alert("No match");
+				    misses++;
+				    document.getElementById("misses").innerHTML = misses;
 				    activeRound = false;
-				    lastClick = "";
+				    lastClickEl = null;
 				    
 			    }
 		    }
 	    }
 
+	    function getBoxesArray() {
+		    var boxes = [];
+		    boxes.push(document.getElementById("box1"));
+		    boxes.push(document.getElementById("box2"));
+		    boxes.push(document.getElementById("box3"));
+		    boxes.push(document.getElementById("box4"));
+		    boxes.push(document.getElementById("box5"));
+		    boxes.push(document.getElementById("box6"));
+		    boxes.push(document.getElementById("box7"));
+		    boxes.push(document.getElementById("box8"));
+		    boxes.push(document.getElementById("box9"));
+		    boxes.push(document.getElementById("box10"));
+		    boxes.push(document.getElementById("box11"));
+		    boxes.push(document.getElementById("box12"));
+		    boxes.push(document.getElementById("box13"));
+		    boxes.push(document.getElementById("box14"));
+		    boxes.push(document.getElementById("box15"));
+		    boxes.push(document.getElementById("box16"));
+		    return boxes;
+	    }
+
     </script>
     
     
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
     
