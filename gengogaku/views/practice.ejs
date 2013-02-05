@@ -14,40 +14,41 @@
     		<p>
     			Match the characters with as few mistakes as possible.
     		</p>
-    		Correct: <span id="hits"></span> Incorrect: <span id="misses"></span>
+    		<div id="matchDisplay" class="hideMatchInfo">Match</div>
+    		Correct: <span id="hits" class="score"></span> Incorrect: <span id="misses" class="score"></span>
 	    	<div class="practiceArea">
-	    		<div id="box1" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box2" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box3" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box4" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box5" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box6" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box7" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box8" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box9" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box10" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box11" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box12" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box13" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box14" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box15" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
-	    		<div id="box16" class="practiceBox" onclick="checkMe(this)">
-	    		</div>
+	    		<div><div id="box1" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box2" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box3" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box4" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box5" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box6" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box7" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box8" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box9" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box10" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box11" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box12" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box13" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box14" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box15" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
+	    		<div><div id="box16" class="practiceBox" onclick="checkMe(this)">
+	    		</div></div>
 	    	</div>
 
     	</div>
@@ -123,14 +124,14 @@
 			    if (lastClickEl.getAttribute("data-kId") === el.getAttribute("data-kId")) {
 				    hits++;
 				    document.getElementById("hits").innerHTML = hits;
-				    alert("Match!");
+				    matchInfo(true);
 				    activeRound = false;
 				    lastClickEl.className += " solved";
 				    el.className += " solved";
 				    lastClick = "";
 			    }
 			    else {
-				    alert("No match");
+				    matchInfo(false);
 				    misses++;
 				    document.getElementById("misses").innerHTML = misses;
 				    activeRound = false;
@@ -160,7 +161,24 @@
 		    boxes.push(document.getElementById("box16"));
 		    return boxes;
 	    }
-
+	    
+	    function matchInfo(match) {
+	    	var className, matchText;
+	    	if (match === true) {
+		    	className = "showMatchInfo";
+		    	matchText = "Match!";
+	    	}
+	    	else {
+		    	className = "showNoMatchInfo";
+		    	matchText = "No match";		    	
+	    	}
+		    document.getElementById("matchDisplay").className = className;
+		    document.getElementById("matchDisplay").innerHTML = matchText;
+		    setTimeout(function(){
+		    	document.getElementById("matchDisplay").className = "hideMatchInfo";
+		    }, 750)
+	    }
+	    
     </script>
     
     
