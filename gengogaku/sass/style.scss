@@ -294,6 +294,13 @@ font-weight: bold;
 
 /* Practice */
 
+.activePracticeTile {
+	background-color: red;
+    $shadow: 0 0 6px 3px rgba(10,90,10,.6);
+    @include box-shadow($shadow);
+	
+}
+
 .score {
 	display: inline-block;
 	width: 60px;
@@ -316,11 +323,18 @@ font-weight: bold;
 	width: 55px;
     $shadow: 0 0 5px 2px rgba(10,90,10,.3);
     @include box-shadow($shadow);
-};
+}
+
+.activePracticeTile {
+	background-color:#e6f2f5;
+    $shadow: 0 0 7px 4px rgba(10,90,10,.5);
+    @include box-shadow($shadow);
+	
+}
 
 .solved {
 	background-color:#e6f4ec;
-	color: #dae4e0;
+	color: #bbd3ca;
 }
 
 #matchDisplay {

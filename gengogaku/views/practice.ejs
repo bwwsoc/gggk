@@ -14,40 +14,42 @@
     		<p>
     			Match the characters with as few mistakes as possible.
     		</p>
+    		<div><button id="startPractice" onclick="practiceSetup()">New game</button><button id="startPractice" onclick="replay()">Replay</button> </div>
     		<div id="matchDisplay" class="hideMatchInfo">Match</div>
-    		Correct: <span id="hits" class="score"></span> Incorrect: <span id="misses" class="score"></span>
+    		Correct: <span id="hits" class="score">0</span> Incorrect: <span id="misses" class="score">0</span>
+    		
 	    	<div class="practiceArea">
-	    		<div><div id="box1" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box1" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box2" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box2" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box3" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box3" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box4" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box4" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box5" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box5" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box6" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box6" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box7" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box7" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box8" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box8" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box9" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box9" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box10" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box10" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box11" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box11" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box12" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box12" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box13" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box13" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box14" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box14" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box15" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box15" class="practiceBox">
 	    		</div></div>
-	    		<div><div id="box16" class="practiceBox" onclick="checkMe(this)">
+	    		<div><div id="box16" class="practiceBox">
 	    		</div></div>
 	    	</div>
 
@@ -63,11 +65,8 @@
 	    	var boxes = getBoxesArray();
 	    	var tmpEl;
 	    	var tmpIndex = Math.floor(Math.random() * boxes.length);
-	    		console.log("tmpIndex: " + tmpIndex);
-	    	//console.log("ks1: " + kanaSet[1].name);
 	    	for (var i = 0; i < 8; i++) {
 	    		tmpEl = boxes.splice(tmpIndex, 1)[0];
-	    		//console.log("tmpEl: " + tmpEl.innerHTML);
 		    	tmpEl.innerHTML = kanaSet[i].name;
 		    	tmpEl.setAttribute("data-kId", kanaSet[i].intValue);
 		    	tmpIndex = Math.floor(Math.random() * boxes.length);
@@ -78,8 +77,7 @@
 		    	tmpEl.setAttribute("data-kId", kanaSet[j].intValue);
 		    	tmpIndex = Math.floor(Math.random() * boxes.length);
 	    	}
-	    	
-	    	console.log("kId: " + document.getElementById("box8").getAttribute("data-kId"));
+	    	replay();
     	}
     
 	    function buildRandomKanaSet() {
@@ -110,11 +108,15 @@
 	    }
 
 
-    	var lastClickEl, thisClickEl;
+    	var lastClickEl, el;
     	var activeRound = false;
     	var hits = 0;
     	var misses = 0;
-	    function checkMe(el) {
+    	
+	    function checkMe() {
+	    	var gameCompleteMsg;
+	    	el = this;
+		    el.className += " activePracticeTile";
 		    if (activeRound !== true) {
 			    lastClickEl = el;
 			    activeRound = true;
@@ -125,22 +127,62 @@
 				    hits++;
 				    document.getElementById("hits").innerHTML = hits;
 				    matchInfo(true);
+				    el.className = "practiceBox solved";
+					lastClickEl.className = "practiceBox solved";
+					el.onclick = "";
+					lastClickEl.onclick = "";
 				    activeRound = false;
-				    lastClickEl.className += " solved";
-				    el.className += " solved";
 				    lastClick = "";
 			    }
 			    else {
 				    matchInfo(false);
 				    misses++;
 				    document.getElementById("misses").innerHTML = misses;
+				    el.className = "practiceBox";
+					lastClickEl.className = "practiceBox";
 				    activeRound = false;
 				    lastClickEl = null;
 				    
 			    }
 		    }
+		    if ((hits + misses) === 8) {
+		    	var successRate = (hits/8) * 100;
+		    	gameCompleteMsg = "Game over. " + successRate + "% (" + hits + "/8)";
+		    	document.getElementById("matchDisplay").className = "showMatchInfo";
+		    	document.getElementById("matchDisplay").innerHTML = gameCompleteMsg;
+			    removeAllPracticeClicks();
+		    }
 	    }
 
+	    
+	    function matchInfo(match) {
+	    	var className, matchText;
+	    	if (match === true) {
+		    	className = "showMatchInfo";
+		    	matchText = "Match!";
+	    	}
+	    	else {
+		    	className = "showNoMatchInfo";
+		    	matchText = "No match";		    	
+	    	}
+		    document.getElementById("matchDisplay").className = className;
+		    document.getElementById("matchDisplay").innerHTML = matchText;
+		    if ((hits + misses) < 8) setTimeout(function(){
+		    	document.getElementById("matchDisplay").className = "hideMatchInfo";
+		    }, 750)
+	    }
+	    
+	    function replay() {
+		    hits = 0;
+		    misses = 0;
+		    resetBoxesStyle();
+	    	document.getElementById("misses").innerHTML = 0;
+			document.getElementById("hits").innerHTML = 0;
+		    document.getElementById("matchDisplay").className = "hideMatchInfo";
+		    lastClickEl = null;
+		    el = null;
+	    }
+	    
 	    function getBoxesArray() {
 		    var boxes = [];
 		    boxes.push(document.getElementById("box1"));
@@ -161,24 +203,21 @@
 		    boxes.push(document.getElementById("box16"));
 		    return boxes;
 	    }
-	    
-	    function matchInfo(match) {
-	    	var className, matchText;
-	    	if (match === true) {
-		    	className = "showMatchInfo";
-		    	matchText = "Match!";
-	    	}
-	    	else {
-		    	className = "showNoMatchInfo";
-		    	matchText = "No match";		    	
-	    	}
-		    document.getElementById("matchDisplay").className = className;
-		    document.getElementById("matchDisplay").innerHTML = matchText;
-		    setTimeout(function(){
-		    	document.getElementById("matchDisplay").className = "hideMatchInfo";
-		    }, 750)
+	    function resetBoxesStyle() {
+	    	var boxes = getBoxesArray();
+		    for (var i = 0; i < boxes.length; i++) {
+			    boxes[i].className = "practiceBox";
+			    boxes[i].onclick = checkMe;
+		    }
 	    }
 	    
+	    function removeAllPracticeClicks() {
+	    	var boxes = getBoxesArray();
+		    for (var i = 0; i < boxes.length; i++) {
+			    boxes[i].onclick = "";
+		    }
+		    
+	    }
     </script>
     
     
