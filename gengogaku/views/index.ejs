@@ -2,12 +2,14 @@
 <% script('javascripts/dateTimeCurrent.js') -%>
 <% script('javascripts/numberFunctions.js') -%>
 <% block('onload', 'onLoad="getTheDate()"') -%>
-<!-- changes -->
+
 	<section class="mainContent">
       <h4>Welcome to Gengogaku.org.</h4>
 	      <p> Gengogaku, n. linguistics. study of languages. </p>
 	      <div class="menuList">
 		      <dl>
+				  <dt><a href="kana">Kana (hiragana)</a></dt>
+				    <dd>Hiragana information and matching game</dd>
 				  <dt><a href="verbBuilder">Verb builder</a></dt>
 				    <dd>Verb conjugations for 16 different forms</dd>
 				  <dt><a href="adjBuilder">Adjective builder</a></dt>
@@ -16,8 +18,6 @@
 				    <dd>Date and time both current and custom</dd>
 				  <dt><a href="numbers">Numbers and Counters</a></dt>
 				    <dd>Numbers and counters  from 1 to 100000.</dd>
-				  <dt><a href="kana">Kana converter</a></dt>
-				    <dd>Hiragana pronunciation, characters and values</dd>
 				  <dt><a href="/api/" target="_blank">JSON api</a> (new window)</dt>
 				    <dd>Get conjugated verb forms via a restful JSON api</dd>
 			  </dl>
