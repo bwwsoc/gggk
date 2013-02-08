@@ -80,8 +80,6 @@ section {
 
 /* General styles */
 
-
-
 .btn {
 	background-color: white;
 	border: 1px solid #999;
@@ -107,6 +105,12 @@ section {
 	width: auto;
 }
 
+.featureSubcontainerDivider {
+	border-top: 1px dotted #ccc;
+	height: 1px;
+	margin: 10px;
+	width: 300px;
+}
 .gggk-table {
 	border-collapse: collapse;	
 	min-width: 425px;

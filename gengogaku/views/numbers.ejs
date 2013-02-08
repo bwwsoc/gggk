@@ -32,7 +32,7 @@
                 <tr> 
                   <td colspan="2">Number:
                     <input id="numberInput"  name="numberInput" type="text" size="7"/> 
-                    <input id="getNumbers" name="Submit" type="button" onclick="translateNumber()" value="Numbers" /> 
+                    <input id="getNumbers" name="Submit" type="button" onclick="doCounters()" value="Numbers" /> 
                     
                   </td>
                 </tr>
@@ -91,13 +91,54 @@
             </form>
            </div>          
 
+	    <div class="featureSubcontainer">
+		    <div class="">
+				<p>Counters 1 - 50:</p>
+				<button id="" class="btn buildBtn" onClick="listNumbers()">numbers</button>
+				<button id="" class="btn buildBtn" onClick="listPeople()">people</button>
+				<div id="counterList" class="counterList">
+				<textarea id="counterListTA" class="counterListTA" cols="25" rows="42"></textarea>	        
+			</div>
+	    </div>  	          
 	    	
     </section>
     
-        <script>
-	function tryNumber(el) {
-    	document.getElementById("numberInput").value = el.innerHTML;
-    	document.getElementById("getNumbers").click();
-	}
-    
+    <script>
+    	
+    	function doCounters() {
+	    	setupNumbers(document.form1.numberInput.value);
+	    	translateNumber();
+    	}
+		function tryNumber(el) {
+	    	document.getElementById("numberInput").value = el.innerHTML;
+	    	document.getElementById("getNumbers").click();
+		}
+	    
+	    function listNumbers() {
+		    var numberList = "";
+		    for (var i = 1; i < 51; i++) {
+			    setupNumbers(i);
+			    numberList += doNumberRomaji(i) + "\n";
+		    }
+	    	document.getElementById("counterListTA").value = numberList;
+	    }
+ 	    function listPeople() {
+		    var numberList = "";
+		    for (var i = 1; i < 51; i++) {
+			    setupNumbers(i);
+			    numberList += doPeopleRomaji(i) + "\n";
+		    }
+	    	document.getElementById("counterListTA").value = numberList;
+	    }
+   
     </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
