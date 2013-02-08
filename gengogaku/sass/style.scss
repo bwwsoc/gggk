@@ -89,6 +89,13 @@ section {
 	@include border-radius(5px);
 	
 }
+.builderControls {
+	border: 1px solid #ccc;
+	margin: 10px 0;
+	overflow: hidden;
+	padding: 5px;
+	width: 285px;	
+}
 .buildBtn {
 	height: 25px;
 	width: 60px;
@@ -121,7 +128,6 @@ section {
 	padding: 3px 4px;	
 }
 
-
 .gggk-footer {
 	background-color: #eeeeee;
 	margin: 5px 50px;
@@ -138,6 +144,10 @@ section {
 	width: 85%;
 }
 
+.polarityCol {
+	width: 145px;
+}
+
 .tryIt {
 	border: 1px solid #a5c5af;
 	clear: both;
@@ -145,10 +155,6 @@ section {
 	overflow: hidden;
 	padding: 5px;
 	width: 285px;
-}
-
-.tryIt-label {
-	//width: 80px;
 }
 
 .tryIt-examples {
@@ -172,10 +178,6 @@ section {
 .tryIt-example-label {
 	display: block;
 	width: 100%;
-}
-.tryIt div {
-  //border: 1px solid green;
-
 }
 
 /* Index page */
@@ -206,7 +208,6 @@ section {
 	display: none;
 }
 
-
 .sampleBtn {
 	background-color: white;
 	border-bottom: 1px solid #eee;
@@ -221,17 +222,6 @@ section {
 	@include border-bottom-left-radius(0);
 }
 
-.verbCol {
-	width: 145px;
-}
-
-.verbControls {
-	border: 1px solid #ccc;
-	margin: 10px 0;
-	overflow: hidden;
-	padding: 5px;
-	width: 285px;	
-}
 
 /* Date and Time */
 
@@ -286,7 +276,6 @@ font-weight: bold;
 	font-size: 15px;
 }
 
-
 .kExample {
 	font-size: 16px;
 }
@@ -294,8 +283,7 @@ font-weight: bold;
 .listAllKana {
 	border: 1px solid #aaa;
 	padding: 5px;
-	width: 310px;
-	
+	width: 310px;	
 }
 
 .outputLabel, valueDisplay{
@@ -349,8 +337,7 @@ font-weight: bold;
 }
 .score {
 	display: inline-block;
-	width: 60px;
-	
+	width: 60px;	
 }
 
 .solved {
