@@ -1,3 +1,33 @@
+function Hizuke(localDate) {
+	this.year = localDate.getFullYear();
+	this.month = localDate.getMonth();
+	this.today = localDate.getDate();
+	this.hours = localDate.getHours();
+	this.hours12 = (this.hours >12) ? this.hours -12 : this.hours;
+	this.minutes = localDate.getMinutes();
+	this.seconds = localDate.getSeconds();
+	this.thisDate = "" + this.month +"/"+ this.today + "/" + this.year;
+	this.thisTime = "" + ((this.hours >12) ? this.hours -12 :this.hours);
+	this.thisTime += ((this.minutes < 10) ? ":0" : ":") + this.minutes;
+	this.thisTime += ((this.seconds < 10) ? ":0" : ":") + this.seconds;
+	this.thisTime += (this.hours >= 12) ? " pm" : " am";
+
+	this.weekDayArray = getWeekDay(localDate.getDay());
+	this.yearR = doYearRomaji(this.year);
+	this.yearK = doYearKanji(this.year);
+	this.monthJ = doMonthJ(this.month);
+	this.dayJ = doDayJ(this.today);
+	this.hoursJ = doHoursJ(this.hours12);
+	this.minutesJ = doMinutesJ(this.minutes);
+	this.amPmJ = setAmPmJ(this.hours);
+	this.dateR = this.yearR + " "  + this.monthJ[0] + " "  + this.dayJ[0];
+	this.dateK = this.yearK + " " + this.monthJ[1] + " " + this.dayJ[1];
+	this.timeR = this.amPmJ[0] + " " + this.hoursJ[0] + " " + this.minutesJ[0];
+	this.timeK = this.amPmJ[1] + " " + this.hoursJ[1] + " " + this.minutesJ[1];
+	this.currentImperialYear = getImperial(this.year);
+}
+
+
 var year = null;
 function getTheDate() {
 	var localDate = new Date();
