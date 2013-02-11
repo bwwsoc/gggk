@@ -25,9 +25,11 @@ app.get('/api/info', api.info);
 app.get('/api/verb', api.infoVerb);
 app.get('/api/adjective', api.infoAdj);
 app.get('/api/kana', api.infoKana);
+app.get('/api/date', api.infoDate);
 app.get('/api/verb/:name', api.vf);
 app.get('/api/adjective/:name', api.af);
 app.get('/api/kana/:name', api.kj);
+app.get('/api/date/current', api.dj);
 
 app.listen(process.env.VCAP_APP_PORT || 3000);
 

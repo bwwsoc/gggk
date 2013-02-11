@@ -8,7 +8,6 @@ exports.getJson = getAdjFormsJson;
 function AdjectiveForms(dictForm){
 	var aDictForm = (dictForm === "ii") ? "yoi" : dictForm;
 	var stem = 	aDictForm.substring(0, aDictForm.length-1);
-	var jsonData;
 	this.aPlPres = aDictForm;
 	this.aPlPresN = stem + "kunai";
 	this.aPlPast = stem + "katta";
@@ -19,7 +18,7 @@ function AdjectiveForms(dictForm){
 	this.aRaN = stem + "kunakattara";
 	this.aAdv = stem + "ku";
 	this.aToo = stem + "sugiru";
-	jsonData =  buildJson(this);
+	var jsonData =  buildJson(this);
 	
 	this.getJson = function getJson() {
 		return jsonData;

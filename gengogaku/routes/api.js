@@ -1,6 +1,7 @@
 var verbForms = require('../lib/verbForms');
 var adjForms = require('../lib/adjForms');
 var kana = require('../lib/kana');
+var date = require('../lib/date');
 
 exports.info = function(req, res) {
 		res.json(apiInfo);
@@ -18,6 +19,10 @@ exports.infoKana = function(req, res) {
 		res.json(apiInfoKana);
 }
 
+exports.infoDate = function(req, res) {
+		res.json(apiInfoDate);
+}
+
 
 exports.vf = function(req, res){
 	var vp = req.params.name;
@@ -29,17 +34,20 @@ exports.vf = function(req, res){
 exports.af = function(req, res){
 	var ap = req.params.name;
 	var formsJson = adjForms.getJson(ap);
-	res.json(formsJson);
-		
+	res.json(formsJson);		
 };
 
 exports.kj = function(req, res){
 	var kp = req.params.name;
 	var formsJson = kana.getJson(kp);
-	res.json(formsJson);
-		
+	res.json(formsJson);		
 };
 
+exports.dj = function(req, res){
+	var dp = new Date();
+	var formsJson = date.getJson(dp);
+	res.json(formsJson);		
+};
 
 
 var apiInfo = {
@@ -48,10 +56,12 @@ var apiInfo = {
 	"verb-api-info" : "http://www.gengogaku.org/api/verb",
 	"adjective-api-info" : "http://www.gengogaku.org/api/adjective",
 	"kana-api-info" : "http://www.gengogaku.org/api/kana",
+	"date-api-info" : "http://www.gengogaku.org/api/date",
 	"exampleUrl-verb-Miru" : "http://www.gengogaku.org/api/verb/miru",
 	"exampleUrl-verb-Miru-Kana" : "http://www.gengogaku.org/api/verb/みる",
 	"exampleUrl-adjective-Takai" : "http://www.gengogaku.org/api/adjective/takai",
 	"exampleUrl-kana-Mi" : "http://www.gengogaku.org/api/kana/mi",
+	"exampleUrl-date-current" : "http://www.gengogaku.org/api/date/current",
 }
 
 
@@ -117,6 +127,12 @@ var apiInfoKana = {
 	"exampleUrl-Wo" : "http://www.gengogaku.org/api/kana/wo",
 }
 
+var apiInfoDate = {
+	"info" : "An api for current date. Custom dates api in development.",
+	"site" : "http://www.gengogaku.org",
+	"date-api" : "http://www.gengogaku.org/api/date",
+	"exampleUrl-current" : "http://www.gengogaku.org/api/date/current",
+}
 
 
 
