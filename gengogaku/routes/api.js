@@ -1,5 +1,6 @@
 var verbForms = require('../lib/verbForms');
 var adjForms = require('../lib/adjForms');
+var kana = require('../lib/kana');
 
 exports.info = function(req, res) {
 		res.json(apiInfo);
@@ -11,6 +12,10 @@ exports.infoVerb = function(req, res) {
 
 exports.infoAdj = function(req, res) {
 		res.json(apiInfoAdj);
+}
+
+exports.infoKana = function(req, res) {
+		res.json(apiInfoKana);
 }
 
 
@@ -28,16 +33,25 @@ exports.af = function(req, res){
 		
 };
 
+exports.kj = function(req, res){
+	var kp = req.params.name;
+	var formsJson = kana.getJson(kp);
+	res.json(formsJson);
+		
+};
+
 
 
 var apiInfo = {
-	"info" : "An api for verbs and adjectives.",
+	"info" : "An api for verbs, adjectives and kana.",
 	"site" : "http://www.gengogaku.org",
 	"verb-api-info" : "http://www.gengogaku.org/api/verb",
 	"adjective-api-info" : "http://www.gengogaku.org/api/adjective",
+	"kana-api-info" : "http://www.gengogaku.org/api/kana",
 	"exampleUrl-verb-Miru" : "http://www.gengogaku.org/api/verb/miru",
 	"exampleUrl-verb-Miru-Kana" : "http://www.gengogaku.org/api/verb/みる",
 	"exampleUrl-adjective-Takai" : "http://www.gengogaku.org/api/adjective/takai",
+	"exampleUrl-kana-Mi" : "http://www.gengogaku.org/api/kana/mi",
 }
 
 
@@ -94,3 +108,19 @@ var apiInfoVerb = {
 		  }
 	}	
 }
+
+var apiInfoKana = {
+	"info" : "An api for kana.",
+	"site" : "http://www.gengogaku.org",
+	"kana-api" : "http://www.gengogaku.org/api/kana",
+	"exampleUrl-Mi" : "http://www.gengogaku.org/api/kana/mi",
+	"exampleUrl-Wo" : "http://www.gengogaku.org/api/kana/wo",
+}
+
+
+
+
+
+
+
+
