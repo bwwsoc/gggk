@@ -51,7 +51,7 @@ exports.dj = function(req, res){
 
 
 var apiInfo = {
-	"info" : "An api for verbs, adjectives and kana.",
+	"info" : "An api for verbs, adjectives, kana and the current date.",
 	"site" : "http://www.gengogaku.org",
 	"verb-api-info" : "http://www.gengogaku.org/api/verb",
 	"adjective-api-info" : "http://www.gengogaku.org/api/adjective",
