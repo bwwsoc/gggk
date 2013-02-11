@@ -1,4 +1,5 @@
 <% layout('layout') -%>
+<% script('javascripts/numbersDoc.js') -%>
 <% script('javascripts/numberFunctions.js') -%>
 <% script('javascripts/numberAndCounters.js') -%>
 
@@ -26,69 +27,64 @@
     			</div>
     		</div>
     	</div>
-
-         <form name="form1" action="" id="form1">
-              <table  class="gggk-table">
+		<div class="builderControls">
+			<span>Number:</span>
+                    <input id="numberInput" type="text" class="input-small">
+                    <button id="buildNumCtrs" class="buildBtn btn" onClick="doCounters2()">Numbers</button>			
+		</div>
+              <table  class="gggk-table numbers-table">
                 <tr> 
-                  <td colspan="2">Number:
-                    <input id="numberInput"  name="numberInput" type="text" size="7"/> 
-                    <input id="getNumbers" name="Submit" type="button" onclick="doCounters()" value="Numbers" /> 
-                    
+                  <td class="gLabel builder-labels-col number-label-col">Number</td>
+                  <td><p class="stacked-labels gLabel">Number</p><div id="numberRomajiTF" class="counterDisplay"></div><div id="numberKanjiTF" class="counterDisplay"></div>
                   </td>
                 </tr>
                 <tr> 
-                  <td class="gLabel builder-labels-col"><strong>Number</strong></td>
-                  <td><p class="stacked-labels">Number</p><input name="numberKanjiTF" type="text" id="numberKanjiTF" size="25"/>
-                  <input name="numberRomajiTF" type="text" id="numberRomajiTF" size="35" /></td>
+                  <td class="gLabel builder-labels-col">People</td>
+                  <td><p class="stacked-labels gLabel">People</p><div id="peopleRomajiTF" class="counterDisplay"></div><div id="peopleKanjiTF" class="counterDisplay"></div></td>
                 </tr>
                 <tr> 
-                  <td class="gLabel builder-labels-col"><strong>People</strong></td>
-                  <td><p class="stacked-labels">People</p><input name="peopleKanjiTF" type="text" id="peopleKanjiTF" size="25" /><input name="peopleRomajiTF" type="text" id="peopleRomajiTF" size="35" /></td>
+                  <td class="gLabel builder-labels-col">General counter</td>
+                  <td><p class="stacked-labels gLabel">General counter</p><div id="generalRomajiTF" class="counterDisplay"></div><div id="generalKanjiTF" class="counterDisplay"></div></td>
                 </tr>
                 <tr> 
-                  <td class="gLabel builder-labels-col"><strong>General counter</strong></td>
-                  <td><p class="stacked-labels">General counter</p><input name="generalKanjiTF" type="text" id="generalKanjiTF" value="" size="25" /><input name="generalRomajiTF" type="text" id="generalRomajiTF" size="35" /></td>
+                  <td class="gLabel builder-labels-col">Flat counter - stamps, paper, cards...</td>
+                  <td><p class="stacked-labels gLabel">Flat counter - stamps, paper, cards</p><div id="flatCounterRomajiTF" class="counterDisplay"></div><div id="flatCounterKanjiTF" class="counterDisplay"></div></td>
                 </tr>
                 <tr> 
-                  <td class="gLabel builder-labels-col"><strong>Flat counter</strong> - stamps, paper, cards, etc.</td>
-                  <td><p class="stacked-labels">Flat counter - stamps, paper, cards</p><input name="flatCounterKanjiTF" type="text" id="flatCounterKanjiTF" value="" size="25" /><input name="flatCounterRomajiTF" type="text" id="flatCounterRomajiTF" size="35" /></td>
+                  <td class="gLabel builder-labels-col">Long counter - pencils, trees, 
+                    fingers...</td>
+                  <td><p class="stacked-labels gLabel">Long counter - pencils, trees, fingers</p><div id="longCounterRomajiTF" class="counterDisplay"></div><div id="longCounterKanjiTF" class="counterDisplay"></div></td>
                 </tr>
                 <tr> 
-                  <td class="gLabel builder-labels-col"><strong>Long counter</strong> - pencils, trees, umbrellas, 
-                    fingers, etc.</td>
-                  <td><p class="stacked-labels">Long counter - pencils, trees, umbrellas</p><input name="longCounterKanjiTF" type="text" id="longCounterKanjiTF" value="" size="25" /><input name="longCounterRomajiTF" type="text" id="longCounterRomajiTF" size="35" /></td>
+                  <td class="gLabel builder-labels-col">Years of Age</td>
+                  <td><p class="stacked-labels gLabel">Years of Age</p><div id="ageYearsRomajiTF" class="counterDisplay"></div><div id="ageYearsKanjiTF" class="counterDisplay"></div></td>
                 </tr>
                 <tr> 
-                  <td class="gLabel builder-labels-col"><strong>Years of Age</strong></td>
-                  <td><p class="stacked-labels">Years of Age</p><input name="ageYearsKanjiTF" type="text" id="ageYearsKanjiTF" value="" size="25" /><input name="ageYearsRomajiTF" type="text" id="ageYearsRomajiTF" size="35" /></td>
+                  <td class="gLabel builder-labels-col">Books</td>
+                  <td><p class="stacked-labels gLabel">Books</p><div id="booksRomajiTF" class="counterDisplay"></div><div id="booksKanjiTF" class="counterDisplay"></div></td>
                 </tr>
                 <tr> 
-                  <td class="gLabel builder-labels-col"><strong>Books</strong></td>
-                  <td><p class="stacked-labels">Books</p><input name="booksKanjiTF" type="text" id="booksKanjiTF" value="" size="25" /><input name="booksRomajiTF" type="text" id="booksRomajiTF" size="35" /></td>
+                  <td class="gLabel builder-labels-col">Small, non-descript objects</td>
+                  <td><p class="stacked-labels gLabel">Small, non-descript objects</p><div id="smallRomajiTF" class="counterDisplay"></div><div id="smallKanjiTF" class="counterDisplay"></div></td>
                 </tr>
                 <tr> 
-                  <td class="gLabel builder-labels-col"><strong>Small, non-descript objects</strong></td>
-                  <td><p class="stacked-labels">Small, non-descript objects</p><input name="smallKanjiTF" type="text" id="smallKanjiTF" value="" size="25" /><input name="smallRomajiTF" type="text" id="smallRomajiTF" size="35" /></td>
-                </tr>
-                <tr> 
-                  <td class="gLabel builder-labels-col"><strong>Floors of a building</strong></td>
-                  <td><p class="stacked-labels">Floors of a building</p><input name="floorsKanjiTF" type="text" id="floorsKanjiTF" value="" size="25" /><input name="floorsRomajiTF" type="text" id="floorsRomajiTF" size="35" /></td>
+                  <td class="gLabel builder-labels-col">Floors of a building</td>
+                  <td><p class="stacked-labels gLabel">Floors of a building</p><div id="floorsRomajiTF" class="counterDisplay"></div><div id="floorsKanjiTF" class="counterDisplay"></div></td>
                 </tr>
                 <tr>
-                  <td class="gLabel builder-labels-col"><strong>Large animals</strong> - horses, cows, etc.</td>
-                  <td><p class="stacked-labels">Large animals - horses, cows</p><input name="animalsLKnajiTF" type="text" id="animalsLKnajiTF" value="" size="25" /><input name="animalsLRomajiTF" type="text" id="animalsLRomajiTF" size="35" /></td>
+                  <td class="gLabel builder-labels-col">Large animals - horses, cows, etc.</td>
+                  <td><p class="stacked-labels gLabel">Large animals - horses, cows</p><div id="animalsLRomajiTF" class="counterDisplay"></div><div id="animalsLKanjiTF" class="counterDisplay"></div></td>
                 </tr>
                 <tr>
-                  <td class="gLabel builder-labels-col"><strong>Small animals</strong> - cats, dogs, etc.</td>
-                  <td><p class="stacked-labels">Small animals - cats, dogs</p><input name="animalsSKanjiTF" type="text" id="animalsSKanjiTF" value="" size="25" /><input name="animalsSRomajiTF" type="text" id="animalsSRomajiTF" size="35" /></td>
+                  <td class="gLabel builder-labels-col">Small animals - cats, dogs, etc.</td>
+                  <td><p class="stacked-labels gLabel">Small animals - cats, dogs</p><div id="animalsSRomajiTF" class="counterDisplay"></div><div id="animalsSKanjiTF" class="counterDisplay"></div></td>
                 </tr>
                 <tr>
-                  <td class="gLabel builder-labels-col"><strong>Flying and hopping animals</strong> - birds, frogs, 
-                    etc.</td>
-                  <td><p class="stacked-labels">Flying and hopping animals - birds, frogs</p><input name="animalsFKanjiTF" type="text" id="animalsFKanjiTF" value="" size="25" /><input name="animalsFRomajiTF" type="text" id="animalsFRomajiTF" size="35" /></td>
+                  <td class="gLabel builder-labels-col">Flying or hopping animals - birds, frogs... 
+                    </td>
+                  <td><p class="stacked-labels gLabel">Flying or hopping animals - birds, frogs</p><div id="animalsFRomajiTF" class="counterDisplay"></div><div id="animalsFKanjiTF" class="counterDisplay"></div></td>
                 </tr>
               </table>
-            </form>
            </div>          
 
 	    <div class="featureSubcontainer">
@@ -103,35 +99,7 @@
 	    	
     </section>
     
-    <script>
-    	
-    	function doCounters() {
-	    	setupNumbers(document.form1.numberInput.value);
-	    	translateNumber();
-    	}
-		function tryNumber(el) {
-	    	document.getElementById("numberInput").value = el.innerHTML;
-	    	document.getElementById("getNumbers").click();
-		}
-	    
-	    function listNumbers() {
-		    var numberList = "";
-		    for (var i = 1; i < 51; i++) {
-			    setupNumbers(i);
-			    numberList += doNumberRomaji(i) + "\n";
-		    }
-	    	document.getElementById("counterListTA").value = numberList;
-	    }
- 	    function listPeople() {
-		    var numberList = "";
-		    for (var i = 1; i < 51; i++) {
-			    setupNumbers(i);
-			    numberList += doPeopleRomaji(i) + "\n";
-		    }
-	    	document.getElementById("counterListTA").value = numberList;
-	    }
-   
-    </script>
+
     
     
     
