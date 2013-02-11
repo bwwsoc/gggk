@@ -7,7 +7,6 @@ function setupNumbers(newNumber) {
 	thisNumber = newNumber.toString();
 	numberLength = thisNumber.length;
 	placeValue = breakNumber(thisNumber);
-	qp("placeValue.length: " + placeValue.length);
 }
 
 	
@@ -57,7 +56,8 @@ function listNumbers() {
     var numberList = "";
     for (var i = 1; i < 51; i++) {
 	    setupNumbers(i);
-	    numberList += doNumberRomaji(i) + "\n";
+    	var tmpNumR = (doNumberRomaji(i)  + "          ").substr(0, 12);
+	    numberList += tmpNumR + " : " + doNumberKanji(i) +"\n";
     }
 	document.getElementById("counterListTA").value = numberList;
 }
@@ -65,10 +65,66 @@ function listPeople() {
     var numberList = "";
     for (var i = 1; i < 51; i++) {
 	    setupNumbers(i);
-	    numberList += doPeopleRomaji(i) + "\n";
+    	var tmpNumR = (doPeopleRomaji(i)  + "          ").substr(0, 12);
+	    numberList += tmpNumR + " : " + doNumberKanji(i) +"人\n";
     }
 	document.getElementById("counterListTA").value = numberList;
 }
+function listGeneral() {
+    var numberList = "";
+    for (var i = 1; i < 51; i++) {
+	    setupNumbers(i);
+    	var tmpNumR = (doGeneralRomaji(i)  + "          ").substr(0, 12);
+	    numberList += tmpNumR + " : " + doNumberKanji(i) +"\n";
+    }
+	document.getElementById("counterListTA").value = numberList;
+}
+function listFlat() {
+    var numberList = "";
+    for (var i = 1; i < 51; i++) {
+	    setupNumbers(i);
+    	var tmpNumR = (doFlatCounterRomaji(i)  + "          ").substr(0, 12);
+	    numberList += tmpNumR + " : " + doNumberKanji(i) +"枚\n";
+    }
+	document.getElementById("counterListTA").value = numberList;
+}
+function listLong() {
+    var numberList = "";
+    for (var i = 1; i < 51; i++) {
+	    setupNumbers(i);
+    	var tmpNumR = (doLongCounterRomaji(i)  + "          ").substr(0, 12);
+	    numberList += tmpNumR + " : " + doNumberKanji(i) +"本\n";
+    }
+	document.getElementById("counterListTA").value = numberList;
+}
+function listAge() {
+    var numberList = "";
+    for (var i = 1; i < 51; i++) {
+	    setupNumbers(i);
+    	var tmpNumR = (doAgeYearsRomaji(i)  + "          ").substr(0, 12);
+	    numberList += tmpNumR + " : " + doNumberKanji(i) +"才\n";
+    }
+	document.getElementById("counterListTA").value = numberList;
+}
+function listBooks() {
+    var numberList = "";
+    for (var i = 1; i < 51; i++) {
+	    setupNumbers(i);
+    	var tmpNumR = (doBooksRomaji(i)  + "          ").substr(0, 12);
+	    numberList += tmpNumR + " : " + doNumberKanji(i) +"冊\n";
+    }
+	document.getElementById("counterListTA").value = numberList;
+}
+function listSmall() {
+    var numberList = "";
+    for (var i = 1; i < 51; i++) {
+	    setupNumbers(i);
+    	var tmpNumR = (doSmallRomaji(i)  + "          ").substr(0, 12);
+	    numberList += tmpNumR + " : " + doNumberKanji(i) +"個\n";
+    }
+	document.getElementById("counterListTA").value = numberList;
+}
+
 
 
 

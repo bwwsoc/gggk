@@ -7,19 +7,13 @@ a {
 }
 
 body {
-  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.nav {
-	float: left;
+	font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
 	margin: 0;
-	padding: 5px 0;
+	padding: 0;
 }
 
-.active {
-	color: black;
+section {
+	display: block;
 }
 
 .brand {
@@ -31,12 +25,7 @@ body {
 .feedback-email {
 	color: #8ba5c9
 }
-.gLabel {
-	color: #5f7764;
-	font-size: 12px;
-	font-weight: bold;
-	
-}
+
 .main-footer {
 	border-top: 1px solid #eee;
 	border-bottom: 1px solid #eee;
@@ -52,6 +41,12 @@ body {
 	margin:0;
 	overflow: hidden;
 	padding: 5px;
+}
+
+.nav {
+	float: left;
+	margin: 0;
+	padding: 5px 0;
 }
 
 .nav-link {
@@ -73,9 +68,6 @@ body {
 	text-decoration: none;
 }
 
-section {
-	display: block;
-}
 
 /* General styles */
 
@@ -88,6 +80,12 @@ section {
 	@include border-radius(5px);
 	
 }
+
+.buildBtn {
+	height: 25px;
+	width: 60px;
+}
+
 .builderControls {
 	border: 1px solid #ccc;
 	margin: 10px 0;
@@ -95,9 +93,11 @@ section {
 	padding: 5px;
 	width: 285px;	
 }
-.buildBtn {
-	height: 25px;
-	width: 60px;
+
+.gLabel {
+	color: #5f7764;
+	font-size: 12px;
+	font-weight: bold;	
 }
 
 .data-callout {
@@ -116,6 +116,7 @@ section {
 	margin: 15px auto;
 	width: 95%;
 }
+
 .gggk-table {
 	border-collapse: collapse;	
 	min-width: 420px;
@@ -166,6 +167,7 @@ section {
 	text-align: center;
 	width: 70px;
 }
+
 .tryIt-example-dt {
 	float: left;
 	margin: 0 1%;
@@ -181,9 +183,6 @@ section {
 
 /* Index page */
 
-.menuList {
-	margin: 5px 40px;
-}
 
 .builder {
 	border: 1px solid #dddddd;
@@ -191,7 +190,15 @@ section {
 
 .builder td {
 	border-right: 1px solid #ddd;
+}
 
+.menuList {
+	margin: 5px 40px;
+}
+
+.welcomeTag {
+	font-size: 16px;
+	font-weight: bold;
 }
 
 /* Verb builder */
@@ -230,6 +237,7 @@ section {
 	padding: 5px;
 	width: 320px;
 }
+
 .dateDisplay {
 	margin: 15px 0;
 }
@@ -237,6 +245,7 @@ section {
 .dateTimeContainer {
 	width: 95%;
 }
+
 .dateTimeOut {
 	border: 1px solid #eee;
 	margin: 5px;
@@ -244,6 +253,7 @@ section {
 	padding: 3px;
 	width: 300px;
 }
+
 .dtConverter {
 	margin: 10px 0;
 }
@@ -260,18 +270,15 @@ section {
 	clear: left;
 	border: 1px solid #dddddd;
 }
-.dtRow div {
-}
 
 .dtLabel {
-font-weight: bold;
+	font-weight: bold;
 }
 
 .dtValueCol {
 	padding: 5px;
 	float: left;
 }
-
 
 /* Kana converter */
 
@@ -312,6 +319,7 @@ font-weight: bold;
 	font-size: 48px;
 	text-shadow: 3px 3px 3px #98b2f5;
 }
+
 .stacked-labels {
 	display: none;
 }
@@ -348,6 +356,7 @@ font-weight: bold;
     @include box-shadow($shadow);
 	
 }
+
 .score {
 	display: inline-block;
 	width: 60px;	
@@ -364,6 +373,7 @@ font-weight: bold;
 	text-align: center;
 	width: 300px;
 }
+
 .showMatchInfo {
 	background-color: #71a071;
 }
@@ -380,12 +390,31 @@ font-weight: bold;
 
 /* Numbers and Counters */
 
+
+.counterBtn {
+	display: block;
+	float: left;
+	height: 35px;
+	margin: 0 5px 5px 0;
+}
+
+.counterBtnsContainer {
+	margin: 5px 0;
+	overflow: hidden;
+	padding: 5px 0;
+	width: 310px;
+}
+
 .counterDisplay {
 	border: 1px solid #ccc;
 	height: 18px;
 	margin: 0 5px 2px 0;
 	padding: 2px;
 	width: 290px;
+}
+
+.counterList {
+		clear: both;
 }
 
 .numbers-table .builder-labels-col {
@@ -397,9 +426,11 @@ font-weight: bold;
 	.brand {
 		display: none;
 	}
+	
 	.dtFields {
 		width: 290px;
 	}
+	
 	.gggk-table {
 		min-width: 305px;
 	}
@@ -417,6 +448,7 @@ font-weight: bold;
 	.builder-labels-col {
 		display: none;
 	}
+	
 	.stacked-labels {
 		display: block;
 	}

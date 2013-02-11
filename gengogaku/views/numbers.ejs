@@ -5,8 +5,8 @@
 
     <section class="mainContent">
 	    <div class="featureHeading">
-          <p class="featureTitle">Numbers</p>
-		  <p class="featureDescription">This feature displays the Japanese number and counter for any value from 1 to 100000.</p>
+          <p class="featureTitle">Numbers and Counters</p>
+		  <p class="featureDescription">This feature displays the Japanese number and counter for any value from 1 to 100000. You can generate either a specific number or a block of 1 - 50.</p>
 	    </div>
 	    	
 	    <div class="featureSubcontainer">
@@ -89,9 +89,17 @@
 
 	    <div class="featureSubcontainer">
 		    <div class="">
-				<p>Counters 1 - 50:</p>
-				<button id="" class="btn buildBtn" onClick="listNumbers()">numbers</button>
-				<button id="" class="btn buildBtn" onClick="listPeople()">people</button>
+				<p>List 1 - 50:</p>
+				<div class="counterBtnsContainer">
+					<button id="" class="btn buildBtn counterBtn" onClick="listNumbers()">Numbers</button>
+					<button id="" class="btn buildBtn counterBtn" onClick="listPeople()">People</button>
+					<button id="" class="btn buildBtn counterBtn" onClick="listGeneral()">General</button>
+					<button id="" class="btn buildBtn counterBtn" onClick="listFlat()">Flat</button>
+					<button id="" class="btn buildBtn counterBtn" onClick="listLong()">Long</button>
+					<button id="" class="btn buildBtn counterBtn" onClick="listAge()">Age (yrs)</button>
+					<button id="" class="btn buildBtn counterBtn" onClick="listBooks()">Books</button>
+					<button id="" class="btn buildBtn counterBtn" onClick="listSmall()">Small objects</button>
+				</div>
 				<div id="counterList" class="counterList">
 				<textarea id="counterListTA" class="counterListTA" cols="25" rows="42"></textarea>	        
 			</div>
