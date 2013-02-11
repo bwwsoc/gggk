@@ -35,6 +35,9 @@ var apiInfo = {
 	"site" : "http://www.gengogaku.org",
 	"verb-api-info" : "http://www.gengogaku.org/api/verb",
 	"adjective-api-info" : "http://www.gengogaku.org/api/adjective",
+	"exampleUrl-verb-Miru" : "http://www.gengogaku.org/api/verb/miru",
+	"exampleUrl-verb-Miru-Kana" : "http://www.gengogaku.org/api/verb/みる",
+	"exampleUrl-adjective-Takai" : "http://www.gengogaku.org/api/adjective/takai",
 }
 
 
@@ -42,6 +45,8 @@ var apiInfoAdj = {
 	"info" : "An api for adjectives.",
 	"site" : "http://www.gengogaku.org",
 	"adjective-api" : "http://www.gengogaku.org/api/adjective",
+	"exampleUrl-Takai" : "http://www.gengogaku.org/api/adjective/takai",
+	"exampleUrl-Atsui" : "http://www.gengogaku.org/api/adjective/atsui",
 }
 
 
