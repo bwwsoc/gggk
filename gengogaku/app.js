@@ -22,7 +22,10 @@ app.get('/practice', routes.practice);
 app.get('/api/', api.info);
 app.get('/api/help', api.info);
 app.get('/api/info', api.info);
-app.get('/api/:name', api.kj);
+app.get('/api/verb', api.infoVerb);
+app.get('/api/adjective', api.infoAdj);
+app.get('/api/verb/:name', api.vf);
+app.get('/api/adjective/:name', api.af);
 
 app.listen(process.env.VCAP_APP_PORT || 3000);
 

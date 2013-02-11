@@ -1,13 +1,13 @@
 
 function getVerbFormsJson(dictForm, vKind) {
-	return new VerbForms(dictForm, vKind).jsonData;
+	return new VerbForms(dictForm, vKind).getJson();
 }
 
 exports.getJson = getVerbFormsJson;
 
 function VerbForms(dictForm, vKind) {
 	this.vDictForm = dictForm;
-	this.jsonData;
+	var jsonData;
 	var charType = dictForm.charCodeAt(0) > 1000 ? "h" : "r";
 	if (vKind > 0) { // passed in for ambig
 		this.verbKind = vKind;
@@ -34,9 +34,13 @@ function VerbForms(dictForm, vKind) {
 			default: 	
 		}				
 	}
-	this.jsonData =  buildJson(this);
 	getPPres = function() {
 		return this.vPPres;
+	}
+	jsonData =  buildJson(this);
+	
+	this.getJson = function getJson() {
+		return jsonData;
 	}
 }	
 

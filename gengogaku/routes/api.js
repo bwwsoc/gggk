@@ -1,21 +1,55 @@
 var verbForms = require('../lib/verbForms');
-
-exports.kj = function(req, res){
-	var kp = req.params.name;
-	var formsJson = verbForms.getJson(kp);
-	res.json(formsJson);
-		
-};
+var adjForms = require('../lib/adjForms');
 
 exports.info = function(req, res) {
 		res.json(apiInfo);
 }
 
+exports.infoVerb = function(req, res) {
+		res.json(apiInfoVerb);
+}
+
+exports.infoAdj = function(req, res) {
+		res.json(apiInfoAdj);
+}
+
+
+exports.vf = function(req, res){
+	var vp = req.params.name;
+	var formsJson = verbForms.getJson(vp);
+	res.json(formsJson);
+		
+};
+
+exports.af = function(req, res){
+	var ap = req.params.name;
+	var formsJson = adjForms.getJson(ap);
+	res.json(formsJson);
+		
+};
+
+
+
 var apiInfo = {
+	"info" : "An api for verbs and adjectives.",
+	"site" : "http://www.gengogaku.org",
+	"verb-api-info" : "http://www.gengogaku.org/api/verb",
+	"adjective-api-info" : "http://www.gengogaku.org/api/adjective",
+}
+
+
+var apiInfoAdj = {
+	"info" : "An api for adjectives.",
+	"site" : "http://www.gengogaku.org",
+	"adjective-api" : "http://www.gengogaku.org/api/adjective",
+}
+
+
+var apiInfoVerb = {
 	"info" : "An api that returns the conjugated forms of a Japanese verb.",
 	"site" : "http://www.gengogaku.org",
-	"exampleUrl-Miru" : "http://www.gengogaku.org/api/miru",
-	"exampleUrl-Miru-Kana" : "http://www.gengogaku.org/api/みる",
+	"exampleUrl-Miru" : "http://www.gengogaku.org/api/verb/miru",
+	"exampleUrl-Miru-Kana" : "http://www.gengogaku.org/api/verb/みる",
 	"sampleOutput" : 
 	{
 		  "affirmative": {
