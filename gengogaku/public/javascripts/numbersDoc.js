@@ -30,6 +30,8 @@ function translateNumberNew() {
 	document.getElementById("booksKanjiTF").innerHTML = localNumberKanji + "冊";
 	document.getElementById("generalKanjiTF").innerHTML = localNumberKanji;
 	document.getElementById("animalsSKanjiTF").innerHTML = localNumberKanji + "匹";
+	document.getElementById("animalsLKanjiTF").innerHTML = localNumberKanji + "頭";
+	document.getElementById("animalsFKanjiTF").innerHTML = localNumberKanji + "羽";
 	document.getElementById("ageYearsKanjiTF").innerHTML = localNumberKanji + "才";
 	document.getElementById("smallKanjiTF").innerHTML = localNumberKanji + "個";
 	document.getElementById("floorsKanjiTF").innerHTML = localNumberKanji + "階";
@@ -124,11 +126,47 @@ function listSmall() {
     }
 	document.getElementById("counterListTA").value = numberList;
 }
+function listFloors() {
+    var numberList = "";
+    for (var i = 1; i < 51; i++) {
+	    setupNumbers(i);
+    	var tmpNumR = (doFloorsRomaji(i)  + "          ").substr(0, 12);
+	    numberList += tmpNumR + " : " + doNumberKanji(i) +"階\n";
+    }
+	document.getElementById("counterListTA").value = numberList;
+}
+function listLAnimals() {
+    var numberList = "";
+    for (var i = 1; i < 51; i++) {
+	    setupNumbers(i);
+    	var tmpNumR = (doAnimalsLRomaji(i)  + "          ").substr(0, 12);
+	    numberList += tmpNumR + " : " + doNumberKanji(i) +"頭\n";
+    }
+	document.getElementById("counterListTA").value = numberList;
+}
+function listSAnimals() {
+    var numberList = "";
+    for (var i = 1; i < 51; i++) {
+	    setupNumbers(i);
+    	var tmpNumR = (doAnimalsSRomaji(i)  + "          ").substr(0, 12);
+	    numberList += tmpNumR + " : " + doNumberKanji(i) +"匹\n";
+    }
+	document.getElementById("counterListTA").value = numberList;
+}
+function listFAnimals() {
+    var numberList = "";
+    for (var i = 1; i < 51; i++) {
+	    setupNumbers(i);
+    	var tmpNumR = (doAnimalsFRomaji(i)  + "          ").substr(0, 12);
+	    numberList += tmpNumR + " : " + doNumberKanji(i) +"羽\n";
+    }
+	document.getElementById("counterListTA").value = numberList;
+}
 
 
 
 
-function translateNumber() {
+function translateXNumber() {
 	document.form1.numberRomajiTF.value = doNumberRomaji();
 	document.form1.flatCounterRomajiTF.value = doFlatCounterRomaji();
 	document.form1.longCounterRomajiTF.value = doLongCounterRomaji();
