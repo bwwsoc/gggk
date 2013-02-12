@@ -90,10 +90,20 @@ function KanaDictionary() {
 
 	this.getJsonForKana = function getJsonForValue(kanaValue) {
 		var tmpKana = kDict[kanaValue];
-		var data = {
+		var data;
+		var errorData = {
+			"error" : "unknown kana"
+		}
+		if (typeof tmpKana === "undefined") {
+			return errorData;
+		}
+		else {
+			data = {
 			"name" : tmpKana.name,
 			"unicode" : tmpKana.uValue,
 			"intValue" : tmpKana.intValue
+
+			}
 		}
 		return data;
 	}

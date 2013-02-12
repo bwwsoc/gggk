@@ -62,6 +62,77 @@ var apiInfo = {
 	"exampleUrl-adjective-Takai" : "http://www.gengogaku.org/api/adjective/takai",
 	"exampleUrl-kana-Mi" : "http://www.gengogaku.org/api/kana/mi",
 	"exampleUrl-date-current" : "http://www.gengogaku.org/api/date/current",
+	"sampleOutputVerbMiru" : 
+	{
+		  "affirmative": {
+			    "plainPresent": "miru",
+			    "plainPast": "mita",
+			    "politePresent": "mimasu",
+			    "politePast": "mimashita",
+			    "plainVolitional": "miyoo",
+			    "politeVolitional": "mimashoo",
+			    "teForm": "mite",
+			    "passive": "mirareru",
+			    "desiderative": "mitai",
+			    "causative": "misaseru",
+			    "conditionalEba": "mireba",
+			    "conditionalRa": "mitara",
+			    "potential": "mirareru",
+			    "iterative": "mitari",
+			    "simultaneous": "minagara",
+			    "imperative": "miro"
+		  },
+		  "negative": {
+			    "plainPresent": "minai",
+			    "plainPast": "minakatta",
+			    "politePresent": "mimasen",
+			    "politePast": "mimasen deshita",
+			    "teForm": "minakute",
+			    "passive": "mirarenai",
+			    "desiderative": "mitaku nai",
+			    "causative": "misasenai",
+			    "conditionalEba": "minakereba",
+			    "conditionalRa": "minakattara",
+			    "potential": "mirarenai",
+			    "iterative": "minakattari"
+		  }
+	},	
+	"sampleOutputVerbMiruKana" : 
+	{
+		  "affirmative": {
+			    "plainPresent": "みる",
+			    "plainPast": "みた",
+			    "politePresent": "みます",
+			    "politePast": "みました",
+			    "plainVolitional": "みよう",
+			    "politeVolitional": "みましょう",
+			    "teForm": "みて",
+			    "passive": "みられる",
+			    "desiderative": "みたい",
+			    "causative": "みさせる",
+			    "conditionalEba": "みれば",
+			    "conditionalRa": "みたら",
+			    "potential": "みられる",
+			    "iterative": "みたり",
+			    "simultaneous": "みながら",
+			    "imperative": "みろ"
+		  },
+		  "negative": {
+			    "plainPresent": "みない",
+			    "plainPast": "みなかった",
+			    "politePresent": "みません",
+			    "politePast": "みません でした",
+			    "teForm": "みなくて",
+			    "passive": "みられない",
+			    "desiderative": "みたく ない",
+			    "causative": "みさせない",
+			    "conditionalEba": "みなければ",
+			    "conditionalRa": "みなかったら",
+			    "potential": "みられない",
+			    "iterative": "みなかったり"
+		  }
+	}	
+	
 }
 
 
@@ -79,42 +150,74 @@ var apiInfoVerb = {
 	"site" : "http://www.gengogaku.org",
 	"exampleUrl-Miru" : "http://www.gengogaku.org/api/verb/miru",
 	"exampleUrl-Miru-Kana" : "http://www.gengogaku.org/api/verb/みる",
-	"sampleOutput" : 
+	"sampleOutputVerbMiru" : 
 	{
 		  "affirmative": {
+			    "plainPresent": "miru",
+			    "plainPast": "mita",
 			    "politePresent": "mimasu",
 			    "politePast": "mimashita",
+			    "plainVolitional": "miyoo",
+			    "politeVolitional": "mimashoo",
 			    "teForm": "mite",
 			    "passive": "mirareru",
 			    "desiderative": "mitai",
-			    "causative": "misaseru"
+			    "causative": "misaseru",
+			    "conditionalEba": "mireba",
+			    "conditionalRa": "mitara",
+			    "potential": "mirareru",
+			    "iterative": "mitari",
+			    "simultaneous": "minagara",
+			    "imperative": "miro"
 		  },
 		  "negative": {
+			    "plainPresent": "minai",
+			    "plainPast": "minakatta",
 			    "politePresent": "mimasen",
 			    "politePast": "mimasen deshita",
 			    "teForm": "minakute",
 			    "passive": "mirarenai",
 			    "desiderative": "mitaku nai",
-			    "causative": "misasenai"
+			    "causative": "misasenai",
+			    "conditionalEba": "minakereba",
+			    "conditionalRa": "minakattara",
+			    "potential": "mirarenai",
+			    "iterative": "minakattari"
 		  }
 	},	
-	"sampleOutputKana" : 
+	"sampleOutputVerbMiruKana" : 
 	{
 		  "affirmative": {
+			    "plainPresent": "みる",
+			    "plainPast": "みた",
 			    "politePresent": "みます",
 			    "politePast": "みました",
+			    "plainVolitional": "みよう",
+			    "politeVolitional": "みましょう",
 			    "teForm": "みて",
 			    "passive": "みられる",
 			    "desiderative": "みたい",
-			    "causative": "みさせる"
+			    "causative": "みさせる",
+			    "conditionalEba": "みれば",
+			    "conditionalRa": "みたら",
+			    "potential": "みられる",
+			    "iterative": "みたり",
+			    "simultaneous": "みながら",
+			    "imperative": "みろ"
 		  },
 		  "negative": {
+			    "plainPresent": "みない",
+			    "plainPast": "みなかった",
 			    "politePresent": "みません",
 			    "politePast": "みません でした",
 			    "teForm": "みなくて",
 			    "passive": "みられない",
 			    "desiderative": "みたく ない",
-			    "causative": "みさせない"
+			    "causative": "みさせない",
+			    "conditionalEba": "みなければ",
+			    "conditionalRa": "みなかったら",
+			    "potential": "みられない",
+			    "iterative": "みなかったり"
 		  }
 	}	
 }

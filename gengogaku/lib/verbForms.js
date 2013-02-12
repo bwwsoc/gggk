@@ -8,6 +8,7 @@ exports.getJson = getVerbFormsJson;
 function VerbForms(dictForm, vKind) {
 	this.vDictForm = dictForm;
 	var jsonData;
+	var unknownError = false;
 	var charType = dictForm.charCodeAt(0) > 1000 ? "h" : "r";
 	if (vKind > 0) { // passed in for ambig
 		this.verbKind = vKind;
@@ -15,6 +16,7 @@ function VerbForms(dictForm, vKind) {
 	else {
 		this.verbKind = charType === "h" ? setVbKindH(this.vDictForm) : setVbKind(this.vDictForm);			
 	}
+	console.log("uErr: " + unknownError);
 	// if romaji
 	if (charType === "r") {
 		switch (this.verbKind) {	
@@ -22,7 +24,7 @@ function VerbForms(dictForm, vKind) {
 			case 1: buildVbSuru(this); break;	
 			case 2: buildVbIchidan(this); break;	
 			case 3: buildVbYodan(this); break;	
-			default: ;	
+			default: unknownError = true;	
 		}				
 	}
 	else if (charType === "h") {
@@ -31,18 +33,73 @@ function VerbForms(dictForm, vKind) {
 			case 1: buildVbSuruH(this); break;	
 			case 2: buildVbIchidanH(this); break;	
 			case 3: buildVbYodanH(this); break;	
-			default: 	
+			default: unknownError = true;	
 		}				
 	}
-	getPPres = function() {
+	console.log("uErr2: " + unknownError);
+	getxPPres = function() {
 		return this.vPPres;
 	}
+	
+	function getErrorJson() {
+		errorData = {
+			"error" : "unknown verb"
+		}
+		return errorData;
+	}
+	
 	jsonData =  buildJson(this);
 	
 	this.getJson = function getJson() {
+		if (unknownError === true) {
+			return getErrorJson();
+		}
 		return jsonData;
 	}
 }	
+
+function buildJson(verbForm) {
+	var data={
+		"affirmative":
+	        {
+	            "plainPresent" : verbForm.vPPres,
+	            "plainPast" : verbForm.vPPast,
+	            "politePresent" : verbForm.vPres,
+	            "politePast" : verbForm.vPast,
+	            "plainVolitional" : verbForm.vVolPlain,
+	            "politeVolitional" : verbForm.vVol,
+	            "teForm" : verbForm.vTe,
+	            "passive" : verbForm.vPassive,
+	            "desiderative" : verbForm.vDesid,
+	            "causative" : verbForm.vCaus,
+	            "conditionalEba" : verbForm.vEba,
+	            "conditionalRa" : verbForm.vRa,
+	            "potential" : verbForm.vPot,
+	            "iterative" : verbForm.vIter,
+	            "simultaneous" : verbForm.vSim,
+	            "imperative" : verbForm.vImp
+	        }
+	,
+		"negative":
+	        {
+	            "plainPresent" : verbForm.vNPPres,
+	            "plainPast" : verbForm.vNPPast,
+	            "politePresent" : verbForm.vNPres,
+	            "politePast" : verbForm.vNPast,
+	            "teForm" : verbForm.vNTe,
+	            "passive" : verbForm.vNPassive,
+	            "desiderative" : verbForm.vNDesid,
+	            "causative" : verbForm.vNCaus,
+	            "conditionalEba" : verbForm.vNEba,
+	            "conditionalRa" : verbForm.vNRa,
+	            "potential" : verbForm.vNPot,
+	            "iterative" : verbForm.vNIter
+	        }	
+	}
+	return data;
+}
+
+
 
 function setVbKind(vDicForm) {
 
@@ -66,6 +123,9 @@ function setVbKind(vDicForm) {
 
 function useVbEnding(vDicForm) {
 	var verbKind = -1;
+	if (vDicForm.charAt(vDicForm.length-1).toLowerCase() !== "u") {
+		return verbKind;
+	}
 
 	if (vDicForm.lastIndexOf("iru") !== -1 || vDicForm.lastIndexOf("eru") !== -1) {
 		verbKind = 2;
