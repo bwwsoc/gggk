@@ -67,7 +67,7 @@
 	function getVerbFormJson() {
 		var vDictForm = document.getElementById("dfinTF").value;
     	if (vDictForm === "") return alert('Please provide a verb');
-		var urlReq = "/api/" + vDictForm;
+		var urlReq = "/api/verb/" + vDictForm;
     	var xhReq = new XMLHttpRequest();
 		 xhReq.open("GET", urlReq, false);
 		 xhReq.send();
